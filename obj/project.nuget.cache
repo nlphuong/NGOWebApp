@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZJ4LwoyYWmXN1LDmCAXv4J+tvoROrn98AjgZYpYTrnQLsL3AevtgeM2M1A0PGNochwtdaRf1gbLdZboy+3cq2w==",
+  "dgSpecHash": "K94CFHJL9nsRG/MOQBb2IfT+T6KvU54QhO46YMP4VzfRTCmdGanvtI47muSBN3+5h1Nb7e4GREdlEI+iC7GZfA==",
   "success": true,
-  "projectFilePath": "D:\\FPT\\session 3\\Eproject\\InitProject\\NGOWebsite\\NGOWebsite\\NGOWebApp\\NGOWebApp.csproj",
+  "projectFilePath": "C:\\Users\\sangt\\OneDrive\\Máy tính\\Project\\NGOWebApp\\NGOWebApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sangt\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\sangt\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.7\\microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\FPT\\session 3\\Eproject\\InitProject\\NGOWebsite\\NGOWebsite\\NGOWebApp\\NGOWebApp.csproj": {}
+    "C:\\Users\\sangt\\OneDrive\\Máy tính\\Project\\NGOWebApp\\NGOWebApp.csproj": {}
   },
   "projects": {
-    "D:\\FPT\\session 3\\Eproject\\InitProject\\NGOWebsite\\NGOWebsite\\NGOWebApp\\NGOWebApp.csproj": {
+    "C:\\Users\\sangt\\OneDrive\\Máy tính\\Project\\NGOWebApp\\NGOWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FPT\\session 3\\Eproject\\InitProject\\NGOWebsite\\NGOWebsite\\NGOWebApp\\NGOWebApp.csproj",
+        "projectUniqueName": "C:\\Users\\sangt\\OneDrive\\Máy tính\\Project\\NGOWebApp\\NGOWebApp.csproj",
         "projectName": "NGOWebApp",
-        "projectPath": "D:\\FPT\\session 3\\Eproject\\InitProject\\NGOWebsite\\NGOWebsite\\NGOWebApp\\NGOWebApp.csproj",
+        "projectPath": "C:\\Users\\sangt\\OneDrive\\Máy tính\\Project\\NGOWebApp\\NGOWebApp.csproj",
         "packagesPath": "C:\\Users\\sangt\\.nuget\\packages\\",
-        "outputPath": "D:\\FPT\\session 3\\Eproject\\InitProject\\NGOWebsite\\NGOWebsite\\NGOWebApp\\obj\\",
+        "outputPath": "C:\\Users\\sangt\\OneDrive\\Máy tính\\Project\\NGOWebApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
