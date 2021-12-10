@@ -16,7 +16,9 @@ namespace NGOWebApp.Models
         [Required]
         public string Name { get; set; }
         public string Photo { get; set; }
+        [ForeignKey("CategoryId")]
         public virtual IEnumerable<Partner> GetPartners { get; set; }
+        [ForeignKey("CategoryId")]
         public virtual IEnumerable<Donate> GetDonates { get; set; }
     }
 }

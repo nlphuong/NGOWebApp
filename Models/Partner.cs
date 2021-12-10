@@ -21,6 +21,7 @@ namespace NGOWebApp.Models
         public string Phone { get; set; }
         [Required]
         public string Address { get; set; }
+        [ForeignKey("CategoryId")]
         public int CategoryId { get; set; }
         public string Logo { get; set; }
         public DateTime? CreatedAt { get; set; }
