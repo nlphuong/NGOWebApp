@@ -16,6 +16,7 @@ namespace NGOWebApp.Models
         [Required]
         public string Name { get; set; }
         public string Photo { get; set; }
+        public int Status { get; set; } //1.Active 2.InActive/delete  default:1
         [ForeignKey("CategoryId")]
         public virtual IEnumerable<Partner> GetPartners { get; set; }
         [ForeignKey("CategoryId")]
