@@ -63,22 +63,21 @@
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
+                    <!--Main nav menu-->
                     <a href="@Url.Content("~/User/Home")" class="nav-item nav-link">Home</a>
                     <a href="@Url.Content("~/User/About")" class="nav-item nav-link">About</a>
                     <a href="@Url.Content("~/User/Cause")" class="nav-item nav-link">Causes</a>
                     <a href="@Url.Content("~/User/Event")" class="nav-item nav-link">Events</a>
                     <a href="@Url.Content("~/User/Blog")" class="nav-item nav-link">Blog</a>
                     <a href="@Url.Content("~/User/Contact")" class="nav-item nav-link">Contact</a>
-                    @*<div class="nav-item dropdown">
+                    <!--More choice-->
+                    <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu">
-                            <a href="single.html" class="dropdown-item">Detail Page</a>
-                            <a href="service.html" class="dropdown-item">What We Do</a>
-                            <a href="team.html" class="dropdown-item">Meet The Team</a>
-                            <a href="donate.html" class="dropdown-item">Donate Now</a>
-                            <a href="volunteer.html" class="dropdown-item">Become A Volunteer</a>
+                            <a href="@Url.Content("~/User/Detail")" class="dropdown-item">Detail Page</a>
+                            <a href="@Url.Content("~/User/InviteFriend")" class="dropdown-item">Invite your friend</a>
                         </div>
-                    </div>*@
+                    </div>
                 </div>
             </div>
         </div>

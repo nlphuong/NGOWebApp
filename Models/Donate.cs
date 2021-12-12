@@ -15,7 +15,7 @@ namespace NGOWebApp.Models
         public int Id { get; set; }
         public int AccountId { get; set; }
         [ForeignKey("CategoryId")]
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public int PartnerId { get; set; }
         public double Amount { get; set; }
         public int? Status { get; set; } //1:tiền vào quỷ nhưng chưa dc thực hiện  / 2:Tiền đã được dùng cho 1 program nào đó
