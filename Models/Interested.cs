@@ -16,6 +16,7 @@ namespace NGOWebApp.Models
         public int AccountId { get; set; }
         public int ProgramId { get; set; }
         public int? PartnerId { get; set; }
+        public int Status { get; set; } //1.Active 2.InActive/delete  default:1
         public DateTime? CreatedAt { get; set; }
         public virtual Account GetAccount { get; set; }
         public virtual Programs GetPrograms { get; set; }

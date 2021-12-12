@@ -21,6 +21,7 @@ namespace NGOWebApp.Models
         public string Email { get; set; }
         [Required(ErrorMessage = "Please input content")]
         public string Content { get; set; }
+        public int Status { get; set; } //1.Active 2.InActive/delete  default:1
         public DateTime? CreatedAt { get; set; }
     }
 }
