@@ -25,6 +25,7 @@ namespace NGOWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectDB")));
+
             services.AddControllersWithViews();
         }
 
@@ -56,6 +57,7 @@ namespace NGOWebApp
                 name: "MyAreaUser",
                 areaName: "User",
                 pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
             });
         }
     }
