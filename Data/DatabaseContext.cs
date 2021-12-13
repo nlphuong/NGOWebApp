@@ -94,10 +94,6 @@ namespace NGOWebApp.Data
             modelBuilder.Entity<Account>().HasMany(a => a.GetQueries).WithOne(q => q.GetAccount);
             //(Account-Reply)
             modelBuilder.Entity<Account>().HasMany(a => a.GetReplies).WithOne(r => r.GetAccount);
-            //(DonateCategory-Partner)
-            modelBuilder.Entity<DonateCategory>().HasMany(d => d.GetPartners).WithOne(p => p.GetDonateCategory);
-            //(DonateCategory-Donate)
-            modelBuilder.Entity<DonateCategory>().HasMany(d => d.GetPartners).WithOne(p => p.GetDonateCategory);
             //(Partner-Donate)
             modelBuilder.Entity<Partner>().HasMany(p => p.GetDonates).WithOne(d => d.GetPartner);
             //(Partner-Program)
