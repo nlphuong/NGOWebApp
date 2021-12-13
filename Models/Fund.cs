@@ -16,6 +16,7 @@ namespace NGOWebApp.Models
         public double? Total { get; set; }
         public double? CurrentFund { get; set; }
         public int? DonateId { get; set; }
+        public int Status { get; set; } //1.Active 2.InActive/delete  default:1
         public DateTime? CreatedAt { get; set; }
         public virtual Donate GetDonate { get; set; }
     }

@@ -27,6 +27,7 @@ namespace NGOWebApp.Models
         public string Avatar { get; set; } //default: images/avatar.jpg
         
         public int RoleId { get; set; }//1:Admin 2:User  //Default:2
+        public int Status { get; set; } //1.Active 2.InActive/delete  default:1
         public DateTime? CreatedAt { get; set; }
        
         public virtual Roles GetRole { get; set; }
