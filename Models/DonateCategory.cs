@@ -17,7 +17,7 @@ namespace NGOWebApp.Models
         [Display(Name="Donate Category Name")]
         public string Name { get; set; }
 
-        [Display(Name = "Photo Donate Category")]
+        [Display(Name ="Photo Donate Category")]
         public string Photo { get; set; }
         public int Status { get; set; } //1.Active 2.InActive/delete  default:1
    
