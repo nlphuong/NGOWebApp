@@ -1,0 +1,46 @@
+﻿@model NGOWebApp.Models.Account
+@{
+    ViewData["Title"] = "Login";
+}
+<!-- Page Header Start -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Login</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <div class="card shadow-lg border-0 rounded-lg mt-5" style=" margin-top: 5vh !important">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4"></h3></div>
+                <div class="card-body">
+                    <form asp-action="Login" asp-controller="Account" asp-area="User">
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputEmailAddress">Email</label>
+                            <input class="form-control py-4" id="inputEmailAddress" type="text" name="accMail" asp-for="Email" placeholder="Enter email address" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputPassword">Password</label>
+                            <input class="form-control py-4" id="inputPassword" type="password" name="pass" asp-for="Password" placeholder="Enter password" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <p style="color: red">@ViewBag.Msg</p>
+                        <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                            <a class="small" asp-action="ForgotPassword" asp-controller="Account" asp-area="User">Forgot Password?</a>
+                            <input class="btn btn-primary" type="submit" value="Submit" />
+                            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <div class="small"><a asp-action="Register" asp-controller="Account" asp-area="User">Need an account? Sign up!</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
