@@ -111,7 +111,7 @@ namespace NGOWebApp.Areas.Admin.Controllers
                     {
                         donateCategory.Photo = objFromDb.Photo;
                     }
-
+                    donateCategory.Status = 1;
                     _db.GetDonateCategories.Update(donateCategory);
                 }
 
