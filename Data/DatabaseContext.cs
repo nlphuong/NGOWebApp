@@ -39,6 +39,7 @@ namespace NGOWebApp.Data
             modelBuilder.Entity<Account>().Property(a => a.Avatar).HasDefaultValue("images/avatar.jpg");
             modelBuilder.Entity<Account>().Property(a => a.CreatedAt).HasDefaultValue(DateTime.Now);
             modelBuilder.Entity<Account>().Property(a => a.Status).HasDefaultValue(1);
+           
 
             //contacUs
             modelBuilder.Entity<ContactUs>().Property(a => a.CreatedAt).HasDefaultValue(DateTime.Now);
