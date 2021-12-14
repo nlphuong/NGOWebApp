@@ -62,7 +62,7 @@ namespace NGOWebApp.Areas.User.Controllers
                     ViewBag.Msg = "Invalid account...";
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //ViewBag.Msg = e.Message;
                 throw;
