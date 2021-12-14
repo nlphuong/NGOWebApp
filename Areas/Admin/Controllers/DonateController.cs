@@ -21,7 +21,7 @@ namespace NGOWebApp.Areas.Admin.Controllers
         }
         public async Task<ActionResult> Index()
         {
-            var model =await context.GetDonates.Include(d=>d.GetAccount).Include(d=>d.GetPartner).OrderByDescending(d=>d.CreatedAt).ToListAsync();
+            var model =await context.GetDonates.Include(d=>d.GetAccount).Include(d=>d.GetPartner).Include(d=>d.GetDonateCategory).OrderByDescending(d=>d.CreatedAt).ToListAsync();
             return View(model);
         }
 
