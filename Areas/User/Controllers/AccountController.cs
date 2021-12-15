@@ -3,102 +3,124 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NGOWebApp.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using NGOWebApp.Services.Implements;
+using NGOWebApp.Models;
+using NGOWebApp.Data;
+using NGOWebApp.Models.ViewModels;
+using System.Web.Helpers;
+using Microsoft.EntityFrameworkCore;
 
 namespace NGOWebApp.Areas.User.Controllers
 {
     [Area("User")]
     public class AccountController : Controller
     {
-        private readonly IAccountServices accountServices;
-        public AccountController(IAccountServices accountServices)
+        private readonly  DatabaseContext _db;
+        public AccountController(DatabaseContext db)
         {
-            this.accountServices = accountServices;
+            _db = db;
         }
 
         public IActionResult Index()
         {
-            ViewBag.session = HttpContext.Session.GetString("accmail");
-            if (HttpContext.Session.GetString("accmail") == null)
-            {
-                return RedirectToAction("Login");
-            }
-            else
-            {
+         
                 return View();
-            }
+            
         }
 
         [HttpGet]
         public IActionResult Login()
         {
+        
             return View();
-        }
-        [HttpPost]
-        [ActionName("Login")]
-        public IActionResult CheckLogin(string accMail, string pass)
+       }
+
+        [HttpPost, ActionName("Login")]
+        [ValidateAntiForgeryToken]
+
+        public IActionResult Login(string Email, string Password)
         {
-            try
+            if(ModelState.IsValid)
             {
-                Models.Account account = accountServices.checkLogin(accMail, pass);
-                if (account != null)
+                var objAccount  = _db.GetAccounts.Where(u => u.Email == Email && u.Status == 1).FirstOrDefault();
+                if(objAccount != null)
                 {
-                    HttpContext.Session.Clear();
-                    HttpContext.Session.SetString("account", JsonConvert.SerializeObject(account));
-                    if (account.RoleId == 2)
+                    var verified = GetMD5.CheckMD5(Password);
+                    if(objAccount.Password.Equals(verified))
                     {
-                        return RedirectToAction("Index","Home", new { area = "Admin" });
-                    }
-                    else
+                        //add session
+                        HttpContext.Session.Clear();
+                        HttpContext.Session.SetString("FullName", objAccount.FullName);
+                        HttpContext.Session.SetInt32("Role", objAccount.RoleId);
+
+                        if (objAccount.RoleId == 1)
+                        {
+                            return RedirectToAction("Index", "Home", new { area = "Admin" });
+                        } else
+                        {
+                            return RedirectToAction("Index", "Home", new { area = "User" });
+                        }
+
+                    } else
                     {
-                        return RedirectToAction("Index","Home", new { area = "User" });
+                        ViewBag.Error = "Password does not match";
+                        return View();
+
                     }
-                }
-                else
+
+                } else
                 {
-                    ViewBag.Msg = "Invalid account...";
+                    ViewBag.ExistUser = "Email is not reigister";
+                    return View();
                 }
+
             }
-            catch (Exception)
-            {
-                //ViewBag.Msg = e.Message;
-                throw;
-            }
+
             return View();
         }
+   
 
         public IActionResult Logout()
         {
-          
-                HttpContext.Session.Clear();
-                return RedirectToAction("Login");
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login");
            
         }
 
         [HttpGet]
         public IActionResult Register()
         {
-            return View();
+            AccountVM accountVM = new AccountVM()
+            {
+                Account = new Account(),
+                ExistsAccount = false
+
+            };
+            return View(accountVM);
         }
         [HttpPost]
-        public IActionResult Register(Models.Account newAccount)
+        [ValidateAntiForgeryToken]
+        public IActionResult Register(AccountVM accountVM)
         {
-            try
+            if(ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                var accountCheck = _db.GetAccounts.Where(u => u.Email == accountVM.Account.Email).FirstOrDefault();
+                if(accountCheck == null || (accountCheck != null && accountCheck.Status == 2))
                 {
-                    accountServices.createAccount(newAccount);
-                    return RedirectToAction("Index", "Home", new { area = "User" });
+                    accountVM.Account.Password = GetMD5.CheckMD5(accountVM.Account.Password);
+                    _db.GetAccounts.Add(accountVM.Account);
+                    _db.SaveChanges();
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    accountVM.ExistsAccount = true;
+                    return View(accountVM);
                 }
             }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError(string.Empty, ex.Message);
-            }
-            return View();
+
+            return View(accountVM);
         }
 
     }

@@ -1,7 +1,4 @@
-﻿@model NGOWebApp.Models.Account
-@{
-    ViewData["Title"] = "Login";
-}
+﻿@model Account
 <!-- Page Header Start -->
 <div class="page-header">
     <div class="container">
@@ -18,18 +15,28 @@
             <div class="card shadow-lg border-0 rounded-lg mt-5" style=" margin-top: 5vh !important">
                 <div class="card-header"><h3 class="text-center font-weight-light my-4"></h3></div>
                 <div class="card-body">
-                    <form asp-action="Login" asp-controller="Account" asp-area="User">
+                    <form asp-action="Login" asp-controller="Account" asp-area="User" method="post">
                         <div class="form-group">
                             <label class="small mb-1" for="inputEmailAddress">Email</label>
-                            <input class="form-control py-4" id="inputEmailAddress" type="text" name="accMail" asp-for="Email" placeholder="Enter email address" />
+                            <input class="form-control py-4" id="inputEmailAddress" type="text" asp-for="Email" placeholder="Enter email address" name="Email" />
                             <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label class="small mb-1" for="inputPassword">Password</label>
-                            <input class="form-control py-4" id="inputPassword" type="password" name="pass" asp-for="Password" placeholder="Enter password" />
+                            <input class="form-control py-4" id="inputPassword" type="password" asp-for="Password" placeholder="Enter password" name="Password" />
                             <span asp-validation-for="Password" class="text-danger"></span>
+
+                            <p style="color: red">@ViewBag.Error </p>
+
+
+
+
                         </div>
-                        <p style="color: red">@ViewBag.Msg</p>
+
+                        <p style="color: red">@ViewBag.ExistUser</p>
+
+
+
                         <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                             <a class="small" asp-action="ForgotPassword" asp-controller="Account" asp-area="User">Forgot Password?</a>
                             <input class="btn btn-primary" type="submit" value="Submit" />
@@ -44,3 +51,13 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+ 
+
+}
