@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -76,9 +78,24 @@
                         <div class="dropdown-menu">
                             <a href="@Url.Content("~/User/Detail")" class="dropdown-item">Detail Page</a>
                             <a href="@Url.Content("~/User/InviteFriend")" class="dropdown-item">Invite your friend</a>
+                            @if (Context.Session.GetString("FullName") != null)
+                            {
+                                <a href="#" class="dropdown-item">Change Profile</a>
+                                <a href="#" class="dropdown-item">Change Password</a>
+                                <a  class="dropdown-item" asp-action="Logout" asp-controller="Account" asp-area="User" >Logout</a>
+
+                            }
                         </div>
                     </div>
-                    <a href="@Url.Content("~/User/Account/Login")" class="nav-item nav-link">Login</a>
+                    @if (Context.Session.GetString("FullName") != null)
+                    {
+                        <a href="#" class="nav-item nav-link"> Welcome @Context.Session.GetString("FullName")</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Content("~/User/Account/Login")" class="nav-item nav-link">Login</a>
+                    }
+
                 </div>
             </div>
         </div>
@@ -173,5 +190,7 @@
 
     <!-- Template Javascript -->
     <script src="~/js/User/main.js"></script>
+    @RenderSection("Scripts", required: false)
+
 </body>
 </html>
