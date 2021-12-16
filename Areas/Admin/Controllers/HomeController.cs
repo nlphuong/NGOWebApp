@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,10 @@ namespace NGOWebApp.Areas.Admin.Controllers
     {
         public IActionResult Index()
         {
+            if(HttpContext.Session.GetString("FullName") == null || HttpContext.Session.GetInt32("Role") != 1)
+            {
+                return RedirectToAction("Index", "Home", new { area = "User" });
+            }
             return View();
         }
     }

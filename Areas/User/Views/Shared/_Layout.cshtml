@@ -78,18 +78,19 @@
                         <div class="dropdown-menu">
                             <a href="@Url.Content("~/User/Detail")" class="dropdown-item">Detail Page</a>
                             <a href="@Url.Content("~/User/InviteFriend")" class="dropdown-item">Invite your friend</a>
-                            @if (Context.Session.GetString("FullName") != null)
-                            {
-                                <a href="#" class="dropdown-item">Change Profile</a>
-                                <a href="#" class="dropdown-item">Change Password</a>
-                                <a  class="dropdown-item" asp-action="Logout" asp-controller="Account" asp-area="User" >Logout</a>
-
-                            }
                         </div>
                     </div>
                     @if (Context.Session.GetString("FullName") != null)
                     {
-                        <a href="#" class="nav-item nav-link"> Welcome @Context.Session.GetString("FullName")</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Welcome @Context.Session.GetString("FullName")</a>
+                            <div class="dropdown-menu">
+                                    <a href="#" class="dropdown-item">Change Profile</a>
+                                    <a class="dropdown-item" asp-action="Logout" asp-controller="Account" asp-area="User">Logout</a>
+
+                                
+                            </div>
+                        </div>
                     }
                     else
                     {
