@@ -123,5 +123,10 @@ namespace NGOWebApp.Areas.User.Controllers
             return View(accountVM);
         }
 
+        public IActionResult UserProfile()
+        {
+            return View();
+        }
+
     }
 }
