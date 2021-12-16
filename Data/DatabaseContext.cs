@@ -39,8 +39,10 @@ namespace NGOWebApp.Data
             modelBuilder.Entity<Account>().Property(a => a.Avatar).HasDefaultValue("images/avatar.jpg");
             modelBuilder.Entity<Account>().Property(a => a.CreatedAt).HasDefaultValue(DateTime.Now);
             modelBuilder.Entity<Account>().Property(a => a.Status).HasDefaultValue(1);
+
             //DonateCategory
             modelBuilder.Entity<DonateCategory>().Property(a => a.Status).HasDefaultValue(1);
+
 
             //contacUs
             modelBuilder.Entity<ContactUs>().Property(a => a.CreatedAt).HasDefaultValue(DateTime.Now);
@@ -96,6 +98,8 @@ namespace NGOWebApp.Data
             modelBuilder.Entity<Account>().HasMany(a => a.GetQueries).WithOne(q => q.GetAccount);
             //(Account-Reply)
             modelBuilder.Entity<Account>().HasMany(a => a.GetReplies).WithOne(r => r.GetAccount);
+            //Category-partner
+            modelBuilder.Entity<DonateCategory>().HasMany(a => a.GetPartners).WithOne(r => r.GetDonateCategory);
             //(Partner-Donate)
             modelBuilder.Entity<Partner>().HasMany(p => p.GetDonates).WithOne(d => d.GetPartner);
             //(Partner-Program)

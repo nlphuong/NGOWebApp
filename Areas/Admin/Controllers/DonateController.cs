@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using NGOWebApp.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace NGOWebApp.Areas.Admin.Controllers
 {
@@ -25,14 +27,14 @@ namespace NGOWebApp.Areas.Admin.Controllers
             return View(model);
         }
 
-        // GET: DonateController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> ViewPartner()
         {
-            return RedirectToAction("Index", "Home","");
-            return View();
+            var model = await context.GetDonates.Include(x=>x.GetPartner).ToListAsync();
+            var list = from e in context.GetPartners select e.OrgName.ToString();
+            ViewBag.PartnerList = list.ToArray();
+            return View(model);
         }
 
-        // GET: DonateController/Create
        
     }
 }

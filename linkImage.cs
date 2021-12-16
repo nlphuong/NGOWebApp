@@ -8,5 +8,7 @@ namespace NGOWebApp
     public class linkImage
     {
         public static string imgPath = @"\images\DonateCategory\";
+        public static string imgPathPartner = @"\images\LogoPartner\";
+
     }
 }
