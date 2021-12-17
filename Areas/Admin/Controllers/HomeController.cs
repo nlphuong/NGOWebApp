@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using NGOWebApp.Data;
 using NGOWebApp.Models;
+﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace NGOWebApp.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
+
             DateTime today = DateTime.Today;
             var Total = from d in context.GetDonates where d.CreatedAt.Month == today.Month && d.CreatedAt.Year == today.Year select d;
             var unSuccess = from d in context.GetDonates where d.CreatedAt.Month == today.Month && d.CreatedAt.Year == today.Year &&d.Status==1 select d;
@@ -26,6 +28,12 @@ namespace NGOWebApp.Areas.Admin.Controllers
             ViewBag.TotalDonate= Total.Select(x => x.Amount).Sum();
             ViewBag.unSuccess = unSuccess.Select(x => x.Amount).Sum();
             ViewBag.Success = Success.Select(x => x.Amount).Sum();
+
+            //if(HttpContext.Session.GetString("FullName") == null || HttpContext.Session.GetInt32("Role") != 1)
+            //{
+            //    return RedirectToAction("Index", "Home", new { area = "User" });
+            //}
+
             return View();
         }
         public JsonResult GetBarChart()
