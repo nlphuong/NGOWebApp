@@ -9,9 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NGOWebApp.Services.Interfaces;
-using NGOWebApp.Services.Implements;
-using System.Text.Json.Serialization;
+
+
 
 namespace NGOWebApp
 {
@@ -27,11 +26,15 @@ namespace NGOWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IAccountServices, AccountServiceImp>();
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectDB")));
 
             services.AddControllersWithViews();
-            services.AddSession();
+            services.AddHttpContextAccessor();
+            services.AddSession(Options => {
+                Options.IdleTimeout = TimeSpan.FromMinutes(120);
+                Options.Cookie.HttpOnly = true;
+                Options.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +60,7 @@ namespace NGOWebApp
                 endpoints.MapAreaControllerRoute(
                name: "MyAreaAdmin",
                areaName: "Admin",
-               pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+               pattern: "Admin/{controller=Home}/{action=Index}/{id?}");          
 
                 endpoints.MapAreaControllerRoute(
                 name: "MyAreaUser",

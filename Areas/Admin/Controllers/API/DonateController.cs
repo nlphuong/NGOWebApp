@@ -24,7 +24,7 @@ namespace NGOWebApp.Areas.Admin.Controllers.API
         public IActionResult GetOne(string name)
         {
 
-            var model = from p in context.GetDonates.Include(x => x.GetAccount)
+            var model = from p in context.GetDonates.Include(x => x.GetAccount).OrderByDescending(x=>x.CreatedAt)
                         join d in context.GetPartners on p.PartnerId equals d.Id
                         where d.OrgName.Equals(name)
                         select new { p, d };
