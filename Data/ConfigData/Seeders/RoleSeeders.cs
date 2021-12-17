@@ -12,8 +12,8 @@ namespace NGOWebApp.Data.ConfigData.Seeders
         public RoleSeeders(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Roles>().HasData(
-                new Roles {Id=1, Role=1,Description="User"},
-                new Roles {Id=2, Role=2,Description="Admin"}
+                new Roles {Id=1, Role=1,Description="Admin"},
+                new Roles {Id=2, Role=2,Description="User"}
                 );
         }
     }

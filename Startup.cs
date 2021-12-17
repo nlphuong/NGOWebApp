@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 
+
 namespace NGOWebApp
 {
     public class Startup
@@ -59,7 +60,7 @@ namespace NGOWebApp
                 endpoints.MapAreaControllerRoute(
                name: "MyAreaAdmin",
                areaName: "Admin",
-               pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+               pattern: "Admin/{controller=Home}/{action=Index}/{id?}");          
 
                 endpoints.MapAreaControllerRoute(
                 name: "MyAreaUser",

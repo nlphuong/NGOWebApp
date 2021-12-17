@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\css\elFinder-Material-Theme\.github\img\preview-default.png" />
+    <Content Include="wwwroot\css\elFinder-Material-Theme\.github\img\preview-gray.png" />
+    <Content Include="wwwroot\css\elFinder-Material-Theme\.github\img\preview-light.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="elFinder.NetCore" Version="1.3.6" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.12" />
@@ -18,13 +25,48 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Files\Data\" />
+    <Folder Include="Areas\Files\Models\" />
     <Folder Include="Services\Implements\" />
     <Folder Include="Services\Interfaces\" />
+    <Folder Include="wwwroot\css\elFinder-Material-Theme\.git\objects\info\" />
+    <Folder Include="wwwroot\css\elFinder-Material-Theme\.git\refs\tags\" />
     <Folder Include="wwwroot\images\LogoPartner\" />
+    <Folder Include="wwwroot\files\" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\images\DonateCategory\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\elFinder-Material-Theme\.github\FUNDING.yml" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\config" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\description" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\HEAD" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\hooks\applypatch-msg.sample" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\hooks\commit-msg.sample" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\hooks\fsmonitor-watchman.sample" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\hooks\post-update.sample" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\hooks\pre-applypatch.sample" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\hooks\pre-commit.sample" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\hooks\pre-merge-commit.sample" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\hooks\pre-push.sample" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\hooks\pre-rebase.sample" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\hooks\pre-receive.sample" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\hooks\prepare-commit-msg.sample" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\hooks\push-to-checkout.sample" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\hooks\update.sample" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\index" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\info\exclude" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\logs\HEAD" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\logs\refs\heads\master" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\logs\refs\remotes\origin\HEAD" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\objects\pack\pack-ad98a0dca4e115f5660f801c420c86fa6c252929.idx" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\objects\pack\pack-ad98a0dca4e115f5660f801c420c86fa6c252929.pack" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\packed-refs" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\refs\heads\master" />
+    <None Include="wwwroot\css\elFinder-Material-Theme\.git\refs\remotes\origin\HEAD" />
   </ItemGroup>
 
 
