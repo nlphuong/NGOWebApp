@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using NGOWebApp.Services.Interfaces;
 using NGOWebApp.Services.Implements;
+using ReflectionIT.Mvc.Paging;
 
 namespace NGOWebApp
 {
@@ -31,6 +32,10 @@ namespace NGOWebApp
 
             services.AddControllersWithViews();
             services.AddSession();
+            services.AddPaging(options => {
+                options.ViewName = "Bootstrap4";
+                options.PageParameterName = "pageindex";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
