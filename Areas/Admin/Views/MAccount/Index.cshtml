@@ -7,7 +7,7 @@
 
 <h1>Account List</h1>
 <br />
-<table class="table">
+<table class="table table-bordered  table-striped text-center" id="example">
 
     <thead>
         <tr>
@@ -19,9 +19,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(m => m.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(m => m.Password)
             </th>
             <th>
                 @Html.DisplayNameFor(m => m.Phone)
@@ -53,7 +50,6 @@
         <td>@Html.DisplayFor(i => item.Id)</td>
         <td>@Html.DisplayFor(i => item.FullName)</td>
         <td>@Html.DisplayFor(i => item.Email)</td>
-        <td>@Html.DisplayFor(i => item.Password)</td>
         <td>@Html.DisplayFor(i => item.Phone)</td>
         <td>@Html.DisplayFor(i => item.Address)</td>
         <td>@Html.DisplayFor(i => item.Birthday)</td>

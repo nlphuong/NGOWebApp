@@ -1,22 +1,24 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>NGO</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
 
     <!-- Favicon -->
     <link href="~/images/img/favicon.ico" rel="icon">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- CSS Libraries -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
     <link href="~/lib/User/flaticon/font/flaticon.css" rel="stylesheet" />
-    <link href="~/lib/User/animate/animate.min.css" rel="stylesheet"/>
+    <link href="~/lib/User/animate/animate.min.css" rel="stylesheet" />
     <link href="~/lib/User/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
     <!-- Template Stylesheet -->
     <link href="~/css/User/style.css" rel="stylesheet" />
@@ -78,7 +80,23 @@
                             <a href="@Url.Content("~/User/InviteFriend")" class="dropdown-item">Invite your friend</a>
                         </div>
                     </div>
-                    <a href="@Url.Content("~/User/Account/Login")" class="nav-item nav-link">Login</a>
+                    @if (Context.Session.GetString("FullName") != null)
+                    {
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Welcome @Context.Session.GetString("FullName")</a>
+                            <div class="dropdown-menu">
+                                    <a href="#" class="dropdown-item">Change Profile</a>
+                                    <a class="dropdown-item" asp-action="Logout" asp-controller="Account" asp-area="User">Logout</a>
+
+                                
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <a href="@Url.Content("~/User/Account/Login")" class="nav-item nav-link">Login</a>
+                    }
+
                 </div>
             </div>
         </div>
@@ -173,5 +191,7 @@
 
     <!-- Template Javascript -->
     <script src="~/js/User/main.js"></script>
+    @RenderSection("Scripts", required: false)
+
 </body>
 </html>

@@ -100,6 +100,7 @@ namespace NGOWebApp.Areas.Admin.Controllers
                 {
                     if (ModelState.IsValid)
                     {
+                        acc.RoleId = 1;
                         context.GetAccounts.Add(acc);
                         context.SaveChanges();
                         return RedirectToAction("Index");
