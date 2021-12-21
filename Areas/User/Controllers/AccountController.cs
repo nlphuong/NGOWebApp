@@ -29,12 +29,13 @@ namespace NGOWebApp.Areas.User.Controllers
             
         }
 
+        //Login
         [HttpGet]
         public IActionResult Login()
         {
         
             return View();
-       }
+        }
 
         [HttpPost, ActionName("Login")]
         [ValidateAntiForgeryToken]
@@ -53,6 +54,7 @@ namespace NGOWebApp.Areas.User.Controllers
                         HttpContext.Session.Clear();
                         HttpContext.Session.SetString("FullName", objAccount.FullName);
                         HttpContext.Session.SetInt32("Role", objAccount.RoleId);
+                        HttpContext.Session.SetInt32("Id", objAccount.Id);
 
                         if (objAccount.RoleId == 1)
                         {
@@ -66,7 +68,6 @@ namespace NGOWebApp.Areas.User.Controllers
                     {
                         ViewBag.Error = "Password does not match";
                         return View();
-
                     }
 
                 } else
@@ -80,7 +81,7 @@ namespace NGOWebApp.Areas.User.Controllers
             return View();
         }
    
-
+        //Log out
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
@@ -88,6 +89,7 @@ namespace NGOWebApp.Areas.User.Controllers
            
         }
 
+        //Register
         [HttpGet]
         public IActionResult Register()
         {
@@ -123,10 +125,28 @@ namespace NGOWebApp.Areas.User.Controllers
             return View(accountVM);
         }
 
-        public IActionResult UserProfile()
+        //Forgot password
+        [HttpGet]
+        public IActionResult ForgotPassword()
         {
             return View();
         }
+        
 
+        //User profile
+        public IActionResult UserProfile()
+        {
+            
+            if (HttpContext.Session.GetString("FullName") == null)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                var id = HttpContext.Session.GetInt32("Id");
+                var account = _db.GetAccounts.Find(id);
+                return View(account);
+            }
+        }
     }
 }

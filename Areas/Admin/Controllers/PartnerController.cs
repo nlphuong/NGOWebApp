@@ -186,7 +186,7 @@ namespace NGOWebApp.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            Partner partner = _db.GetPartners.Include(u=>u.GetDonateCategory).FirstOrDefault(u => u.Id == Id);
+            Partner partner = _db.GetPartners.FirstOrDefault(u => u.Id == Id);
             // product.Category = _db.Category.Find(product.CategoryId);
 
             if (partner == null)
