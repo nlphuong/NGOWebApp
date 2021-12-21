@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace NGOWebApp.Models
@@ -22,7 +23,10 @@ namespace NGOWebApp.Models
 
         [Required(ErrorMessage = "Password is required!"), DataType(DataType.Password),RegularExpression(@"^[\w\s]{8,12}$",ErrorMessage ="Password must from 8 to 12 character")]
         public string Password { get; set; }
+<<<<<<< HEAD
 
+=======
+>>>>>>> aba4b513f35f2feb747d64e9882988bc6b6a52e0
         [Required(ErrorMessage ="Please Input Phone number!"), RegularExpression(@"^[0-9]{8,12}$", ErrorMessage = "invalid phone number")]
         public string Phone { get; set; }
       
@@ -33,7 +37,6 @@ namespace NGOWebApp.Models
         public int RoleId { get; set; }//1:Admin 2:User  //Default:2
         public int Status { get; set; } //1.Active 2.InActive/delete  default:1
         public DateTime? CreatedAt { get; set; }
-       
         public virtual Roles GetRole { get; set; }
         public virtual IEnumerable<Donate> GetDonates { get; set; }
         public virtual IEnumerable<Interested> GetInteresteds { get; set; }
