@@ -85,7 +85,7 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Welcome @Context.Session.GetString("FullName")</a>
                             <div class="dropdown-menu">
-                                    <a href="#" class="dropdown-item">Change Profile</a>
+                                    <a href="@Url.Content("~/User/Account/UserProfile")" class="dropdown-item">My Profile</a>
                                     <a class="dropdown-item" asp-action="Logout" asp-controller="Account" asp-area="User">Logout</a>
 
                                 
