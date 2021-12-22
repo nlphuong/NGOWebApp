@@ -27,7 +27,6 @@ namespace NGOWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectDB")));
-
             services.AddControllersWithViews();
             services.AddHttpContextAccessor();
             services.AddSession(Options => {
@@ -36,7 +35,6 @@ namespace NGOWebApp
                 Options.Cookie.IsEssential = true;
             });
         }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
