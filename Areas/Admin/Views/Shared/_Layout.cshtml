@@ -22,7 +22,7 @@
     <link href="~/css/Admin/report.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-
+    @RenderSection("Styles", required: false)
 </head>
 <body>
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -103,7 +103,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             Photos Management
                         </a>
-                        <a class="nav-link">
+                        <a class="nav-link" asp-area="Admin" asp-controller="HelpCenter" asp-action="Index">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             Reply and Queries
                         </a>
