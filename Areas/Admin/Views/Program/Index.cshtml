@@ -52,7 +52,18 @@
                     @Html.DisplayFor(modelItem => item.Duration)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Status)
+                    @if (item.Status == 1)
+                    {
+                        <span class="badge badge-pill badge-primary">Call for Donations</span>
+                    }
+                    else if (item.Status == 2)
+                    {
+                        <span class="badge badge-pill badge-warning">Donation has been completed</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-pill badge-success">Completed Campaign</span>
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreatedAt)

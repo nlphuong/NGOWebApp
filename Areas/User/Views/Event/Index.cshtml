@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<NGOWebApp.Models.ViewModels.ProgramDonateVM>
+@{
     ViewData["Title"] = "Event";
 }
 <!-- Page Header Start -->
@@ -24,82 +25,43 @@
             <h2>Be ready for our upcoming charity events</h2>
         </div>
         <div class="row">
+            @foreach (var item in Model)
+            {
             <div class="col-lg-6">
                 <div class="event-item">
-                    <img src="~/images/img/event-1.jpg" alt="Image">
-                    <div class="event-content">
+                    <img src="~/@item.Programs.Photo" alt="Image">
+                    <div class="event-content" >
                         <div class="event-meta">
-                            <p><i class="fa fa-calendar-alt"></i>01-Jan-45</p>
-                            <p><i class="far fa-clock"></i>8:00 - 10:00</p>
-                            <p><i class="fa fa-map-marker-alt"></i>New York</p>
+                            <p><i class="fa fa-calendar-alt"></i>@item.Programs.Duration.ToString("dd MMM yyy")</p>
+                            @if (item.DateDiff >= 0 && item.Programs.Status == 1)
+                            {
+                                <p><i class="far fa-clock"></i>@item.DateDiff Days</p>
+                            }
+                            <p><i class="fa fa-map-marker-alt"></i>Viet Nam</p>
+                            @if (item.Programs.Status == 2)
+                            {
+                                <span class="badge badge-warning">The campaign is over</span>
+                            }                                                    
                         </div>
                         <div class="event-text">
-                            <h3>Từ thiện miền Trung</h3>
-                            <p>
-                                Help miền Trung's people to get through this problem
-                            </p>
-                            <a class="btn btn-custom" href="">Join Now</a>
+                            <div style="height:180px">
+                                <h3>@item.Programs.ShortContent</h3>
+                            </div>                       
+                            <div class="causes-btn">
+                                <a class="btn btn-custom" asp-action="Details" asp-controller="Event" asp-route-Id="@item.Programs.Id">Learn More</a>
+                                @if (item.Programs.Status == 1)
+                                {
+                                    <a class="btn btn-custom">Donate Now</a>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
-            <div class="col-lg-6">
-                <div class="event-item">
-                    <img src="~/images/img/event-2.jpg" alt="Image">
-                    <div class="event-content">
-                        <div class="event-meta">
-                            <p><i class="fa fa-calendar-alt"></i>01-Jan-45</p>
-                            <p><i class="far fa-clock"></i>8:00 - 10:00</p>
-                            <p><i class="fa fa-map-marker-alt"></i>New York</p>
-                        </div>
-                        <div class="event-text">
-                            <h3>Quỷ mổ tim Hằng Hữu</h3>
-                            <p>
-                                Hekp children to have new heart for new Life
-                            </p>
-                            <a class="btn btn-custom" href="">Join Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="event-item">
-                    <img src="~/images/img/event-1.jpg" alt="Image">
-                    <div class="event-content">
-                        <div class="event-meta">
-                            <p><i class="fa fa-calendar-alt"></i>01-Jan-45</p>
-                            <p><i class="far fa-clock"></i>8:00 - 10:00</p>
-                            <p><i class="fa fa-map-marker-alt"></i>New York</p>
-                        </div>
-                        <div class="event-text">
-                            <h3>Lorem ipsum dolor sit</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte liqum metus tortor
-                            </p>
-                            <a class="btn btn-custom" href="">Join Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="event-item">
-                    <img src="~/images/img/event-2.jpg" alt="Image">
-                    <div class="event-content">
-                        <div class="event-meta">
-                            <p><i class="fa fa-calendar-alt"></i>01-Jan-45</p>
-                            <p><i class="far fa-clock"></i>8:00 - 10:00</p>
-                            <p><i class="fa fa-map-marker-alt"></i>New York</p>
-                        </div>
-                        <div class="event-text">
-                            <h3>Lorem ipsum dolor sit</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte liqum metus tortor
-                            </p>
-                            <a class="btn btn-custom" href="">Join Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                
+            }
+
         </div>
     </div>
 </div>

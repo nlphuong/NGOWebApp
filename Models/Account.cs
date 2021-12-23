@@ -23,10 +23,7 @@ namespace NGOWebApp.Models
 
         [Required(ErrorMessage = "Password is required!"), DataType(DataType.Password),RegularExpression(@"^[\w\s]{8,12}$",ErrorMessage ="Password must from 8 to 12 character")]
         public string Password { get; set; }
-<<<<<<< HEAD
 
-=======
->>>>>>> aba4b513f35f2feb747d64e9882988bc6b6a52e0
         [Required(ErrorMessage ="Please Input Phone number!"), RegularExpression(@"^[0-9]{8,12}$", ErrorMessage = "invalid phone number")]
         public string Phone { get; set; }
       

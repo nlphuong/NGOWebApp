@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NGOWebApp.Data;
+using NGOWebApp.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +12,28 @@ namespace NGOWebApp.Areas.User.Controllers
     [Area("User")]
     public class EventController : Controller
     {
+        private readonly DatabaseContext context;
+        public EventController(DatabaseContext context)
+        {
+            this.context = context;
+        }
         public IActionResult Index()
         {
-            return View();
+            var model = from p in context.GetPrograms.Include(x => x.GetDonates).Include(x => x.GetPartner).OrderBy(x=>x.Status)
+
+                        select new ProgramDonateVM
+                        {
+                            Programs = p,
+                            SumDonate = p.GetDonates.Select(x => x.Amount).Sum(),
+                            DateDiff = (p.Duration - DateTime.Now).Days
+                        };
+
+            var result = model.ToList();
+            return View(result);
+        }
+        public IActionResult Details(int Id)
+        {
+            return View(context.GetPrograms.Include(x=>x.GetPartner).Where(x=>x.Id==Id).Single());
         }
     }
 }
