@@ -20,7 +20,7 @@ namespace NGOWebApp.Areas.Admin.Controllers
         public IActionResult Index(int pageindex = 1)
         {
             var acc = context.GetAccounts.Where(a => a.Status == 1);        
-            var model = PagingList.Create(acc,3, pageindex);
+            var model = PagingList.Create(acc,5, pageindex);
             return View(model);
         }
       
@@ -95,12 +95,13 @@ namespace NGOWebApp.Areas.Admin.Controllers
         {
             try 
             {
-                var newAcc = context.GetAccounts.SingleOrDefault(a => a.Email.Equals(acc.Email) && a.Password.Equals(acc.Password));
-                if (newAcc == null)
+                var newAcc = context.GetAccounts.SingleOrDefault(a => a.Email.Equals(acc.Email));
+                if (newAcc==null)
                 {
                     if (ModelState.IsValid)
                     {
                         acc.RoleId = 1;
+                        acc.Password = GetMD5.CheckMD5(acc.Password);
                         context.GetAccounts.Add(acc);
                         context.SaveChanges();
                         return RedirectToAction("Index");
@@ -117,6 +118,12 @@ namespace NGOWebApp.Areas.Admin.Controllers
 
             return View();
 
+        }
+
+        public IActionResult ContactUs()
+        {    
+            var model= context.GetContactUs.ToList();
+            return View(model);
         }
     }
 }

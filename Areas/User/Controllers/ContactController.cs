@@ -13,15 +13,25 @@ namespace NGOWebApp.Areas.User.Controllers
         public ContactController(Data.DatabaseContext context) {
             this.context = context;
         }
+
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult Create(string name)
-        {
-            
 
+        [HttpGet]
+        public IActionResult Create()
+        {
             return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Create(Models.ContactUs contact)
+        {
+            context.Add(contact);
+            context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
