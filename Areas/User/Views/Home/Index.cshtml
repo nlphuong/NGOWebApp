@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<NGOWebApp.Models.ViewModels.ProgramDonateVM>
+@{
     ViewData["Title"] = "Home Page";
 }
 @await Html.PartialAsync("~/Areas/User/Views/Shared/_Slide.cshtml")
@@ -30,13 +31,13 @@
 
                     <div class="tab-content">
                         <div id="tab-content-1" class="container tab-pane active">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae pellentesque turpis. Donec in hendrerit dui, vel blandit massa. Ut vestibulum suscipit cursus. Cras quis porta nulla, ut placerat risus. Aliquam nec magna eget velit luctus dictum. Phasellus et felis sed purus tristique dignissim. Morbi sit amet leo at purus accumsan pellentesque. Vivamus fermentum nisi vel dapibus blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            The pain itself is love, the main storage system. The life of the kids is ugly. It's in the bureau's housing, or the mass is flattering. As the arches take the course. There is no gate to the man tomorrow, so that he may invest his laughter. No need to wish the mourning was great. Phasellus et felis sed purus tristique dignissim. Morbi sit amet leo at purus accumsan pellentesque. But live yeast or protein flats. The pain itself is love, the main storage system.
                         </div>
                         <div id="tab-content-2" class="container tab-pane fade">
-                            Sed tincidunt, magna ut vehicula volutpat, turpis diam condimentum justo, posuere congue turpis massa in mi. Proin ornare at massa at fermentum. Nunc aliquet sed nisi iaculis ornare. Nam semper tortor eget est egestas, eu sagittis nunc sodales. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent bibendum sapien sed purus molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            But start, as the great vehicles of the weekend, the disgraceful sauce of the just, lay down the ugly mass in the mi. Proin to decorate at the mass at the warm Now the bananas, but only the arrows to decorate. For ever the torturer needs to be scared, the arrows are now the members of the EU. Sometimes the hunger and the unbelievable hunger in front of him, especially in the throat. Praesent bibendum sapien sed purus molestie malesuada. The pain itself is love, the main storage system.
                         </div>
                         <div id="tab-content-3" class="container tab-pane fade">
-                            Aliquam dolor odio, mollis sed feugiat sit amet, feugiat ut sapien. Nunc eu dignissim lorem. Suspendisse at hendrerit enim. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed condimentum semper turpis vel facilisis. Nunc vel faucibus orci. Mauris ut mauris rhoncus, efficitur nisi at, venenatis quam. Praesent egestas pretium enim sit amet finibus. Curabitur at erat molestie, tincidunt lorem eget, consequat ligula.
+                            Suspendisse at hendrerit enim. Sometimes the hunger and the unbelievable hunger in front of him, especially in the throat. But the sauce is always ugly or easy. Now or the throat of the orcs. Mauris ut mauris Zen, it becomes nothing but at, how poisonous. It's the price of poverty that is important for the ends. The pain was at the annoyance, the vehicle needs to stop, the consequences were unconventional.
                         </div>
                     </div>
                 </div>
@@ -60,7 +61,7 @@
                     </div>
                     <div class="service-text">
                         <h3>Healthy Food</h3>
-                        <p>Lorem ipsum dolor sit amet elit. Phase nec preti facils ornare velit non metus tortor</p>
+                        <p>Healthy Food Guide makes it easy and enjoyable to eat well and feel great. Thousands of healthy recipes, expert nutrition advice you can trust</p>
                     </div>
                 </div>
             </div>
@@ -71,7 +72,7 @@
                     </div>
                     <div class="service-text">
                         <h3>Pure Water</h3>
-                        <p>Lorem ipsum dolor sit amet elit. Phase nec preti facils ornare velit non metus tortor</p>
+                        <p>Purified water is water that has been mechanically filtered or processed to remove impurities and make it suitable for use. </p>
                     </div>
                 </div>
             </div>
@@ -82,7 +83,7 @@
                     </div>
                     <div class="service-text">
                         <h3>Health Care</h3>
-                        <p>Lorem ipsum dolor sit amet elit. Phase nec preti facils ornare velit non metus tortor</p>
+                        <p>Healthcare is the maintenance or improvement of health via the prevention, diagnosis, treatment</p>
                     </div>
                 </div>
             </div>
@@ -93,7 +94,7 @@
                     </div>
                     <div class="service-text">
                         <h3>Primary Education</h3>
-                        <p>Lorem ipsum dolor sit amet elit. Phase nec preti facils ornare velit non metus tortor</p>
+                        <p>The Primary Education Program trains teachers with a heart of love and respect for people</p>
                     </div>
                 </div>
             </div>
@@ -104,7 +105,7 @@
                     </div>
                     <div class="service-text">
                         <h3>Residence Facilities</h3>
-                        <p>Lorem ipsum dolor sit amet elit. Phase nec preti facils ornare velit non metus tortor</p>
+                        <p>The Residence features many facilities and amenities to help make your stay on campus enjoyable</p>
                     </div>
                 </div>
             </div>
@@ -115,7 +116,7 @@
                     </div>
                     <div class="service-text">
                         <h3>Social Care</h3>
-                        <p>Lorem ipsum dolor sit amet elit. Phase nec preti facils ornare velit non metus tortor</p>
+                        <p>Care services, equipment and care homes. Includes home adaptations, help at home from a paid carer, staying safe and housing.</p>
                     </div>
                 </div>
             </div>
@@ -171,106 +172,46 @@
 <div class="causes">
     <div class="container">
         <div class="section-header text-center">
-            <p>Popular Causes</p>
-            <h2>Let's know about charity causes around the world</h2>
+            <p>Upcoming Events</p>
+            <h2>Be ready for our upcoming charity events</h2>
         </div>
         <div class="owl-carousel causes-carousel">
-            <div class="causes-item">
-                <div class="causes-img">
-                    <img src="~/images/img/causes-1.jpg" alt="Image">
-                </div>
-                <div class="causes-progress">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                            <span>85%</span>
+            @foreach (var item in Model)
+            {
+                <div class="causes-item">
+                    <div class="causes-img">
+                        <img src="~/@item.Programs.Photo" alt="Image">
+                    </div>
+                    <div class="causes-progress">
+                        <div class="progress">
+                            @{ var a =(decimal)( @item.SumDonate / @item.Programs.ExpectedAmount);}
+                            <div class="progress-bar" role="progressbar" aria-valuenow="@Math.Round(a*100,0)" aria-valuemin="0" aria-valuemax="100">
+                                <span>@Math.Round((decimal)(item.SumDonate / item.Programs.ExpectedAmount) * 100, 0)</span>
+                            </div>
+                        </div>
+                        <div class="progress-text">
+                            <p><strong> @item.SumDonate / @item.Programs.ExpectedAmount $</strong></p>
+
                         </div>
                     </div>
-                    <div class="progress-text">
-                        <p><strong>Raised:</strong> $100000</p>
-                        <p><strong>Goal:</strong> $50000</p>
-                    </div>
-                </div>
-                <div class="causes-text">
-                    <h3>Lorem ipsum dolor sit</h3>
-                    <p>Lorem ipsum dolor sit amet elit. Phasell nec pretium mi. Curabit facilis ornare velit non vulputa</p>
-                </div>
-                <div class="causes-btn">
-                    <a class="btn btn-custom">Learn More</a>
-                    <a class="btn btn-custom">Donate Now</a>
-                </div>
-            </div>
-            <div class="causes-item">
-                <div class="causes-img">
-                    <img src="~/images/img/causes-2.jpg" alt="Image">
-                </div>
-                <div class="causes-progress">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                            <span>85%</span>
+                    <div class="causes-text">
+                        <div style="height:180px">
+                            <h4>@item.Programs.ShortContent</h4>
                         </div>
-                    </div>
-                    <div class="progress-text">
-                        <p><strong>Raised:</strong> $100000</p>
-                        <p><strong>Goal:</strong> $50000</p>
-                    </div>
-                </div>
-                <div class="causes-text">
-                    <h3>Lorem ipsum dolor sit</h3>
-                    <p>Lorem ipsum dolor sit amet elit. Phasell nec pretium mi. Curabit facilis ornare velit non vulputa</p>
-                </div>
-                <div class="causes-btn">
-                    <a class="btn btn-custom">Learn More</a>
-                    <a class="btn btn-custom">Donate Now</a>
-                </div>
-            </div>
-            <div class="causes-item">
-                <div class="causes-img">
-                    <img src="~/images/img/causes-3.jpg" alt="Image">
-                </div>
-                <div class="causes-progress">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                            <span>85%</span>
+                        <div class="row">
+                            <div class="col-sm-3"><img src="~/images/LogoPartner/@item.Programs.GetPartner.Logo" /></div>
+                            <div class="col-sm-6" style="color:mediumaquamarine">@item.Programs.GetPartner.OrgName</div>
+                            <div class="col-sm-3 text-danger" style="font-size:15px">@item.DateDiff day left</div>
                         </div>
+
                     </div>
-                    <div class="progress-text">
-                        <p><strong>Raised:</strong> $100000</p>
-                        <p><strong>Goal:</strong> $50000</p>
-                    </div>
-                </div>
-                <div class="causes-text">
-                    <h3>Lorem ipsum dolor sit</h3>
-                    <p>Lorem ipsum dolor sit amet elit. Phasell nec pretium mi. Curabit facilis ornare velit non vulputa</p>
-                </div>
-                <div class="causes-btn">
-                    <a class="btn btn-custom">Learn More</a>
-                    <a class="btn btn-custom">Donate Now</a>
-                </div>
-            </div>
-            <div class="causes-item">
-                <div class="causes-img">
-                    <img src="~/images/img/causes-4.jpg" alt="Image">
-                </div>
-                <div class="causes-progress">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                            <span>85%</span>
-                        </div>
-                    </div>
-                    <div class="progress-text">
-                        <p><strong>Raised:</strong> $100000</p>
-                        <p><strong>Goal:</strong> $50000</p>
+                    <div class="causes-btn">
+                        <a class="btn btn-custom" asp-action="Details" asp-controller="Event" asp-route-Id="@item.Programs.Id">Learn More</a>
+                        <a class="btn btn-custom">Donate Now</a>
                     </div>
                 </div>
-                <div class="causes-text">
-                    <h3>Lorem ipsum dolor sit</h3>
-                    <p>Lorem ipsum dolor sit amet elit. Phasell nec pretium mi. Curabit facilis ornare velit non vulputa</p>
-                </div>
-                <div class="causes-btn">
-                    <a class="btn btn-custom">Learn More</a>
-                    <a class="btn btn-custom">Donate Now</a>
-                </div>
-            </div>
+            }
+
         </div>
     </div>
 </div>
@@ -287,7 +228,7 @@
                     </div>
                     <div class="donate-text">
                         <p>
-                            Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non. Aliquam metus tortor, auctor id gravida, viverra quis sem. Curabitur non nisl nec nisi maximus. Aenean convallis porttitor. Aliquam interdum at lacus non blandit.
+                            The pain itself is a lot of pain. My price does not change. It is not easy to wish to decorate the classroom. Some fear the torturer, the author of this pregnant, cartoon who I'm not the biggest players. Aenean convallis porttitor. But sometimes the lake is not flattering.
                         </p>
                     </div>
                 </div>
@@ -322,136 +263,6 @@
     </div>
 </div>
 <!-- Donate End -->
-<!-- Event Start -->
-<div class="event">
-    <div class="container">
-        <div class="section-header text-center">
-            <p>Upcoming Events</p>
-            <h2>Be ready for our upcoming charity events</h2>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="event-item">
-                    <img src="~/images/img/event-1.jpg" alt="Image">
-                    <div class="event-content">
-                        <div class="event-meta">
-                            <p><i class="fa fa-calendar-alt"></i>01-Jan-45</p>
-                            <p><i class="far fa-clock"></i>8:00 - 10:00</p>
-                            <p><i class="fa fa-map-marker-alt"></i>New York</p>
-                        </div>
-                        <div class="event-text">
-                            <h3>Lorem ipsum dolor sit</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte liqum metus tortor
-                            </p>
-                            <a class="btn btn-custom" href="">Join Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="event-item">
-                    <img src="~/images/img/event-2.jpg" alt="Image">
-                    <div class="event-content">
-                        <div class="event-meta">
-                            <p><i class="fa fa-calendar-alt"></i>01-Jan-45</p>
-                            <p><i class="far fa-clock"></i>8:00 - 10:00</p>
-                            <p><i class="fa fa-map-marker-alt"></i>New York</p>
-                        </div>
-                        <div class="event-text">
-                            <h3>Lorem ipsum dolor sit</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte liqum metus tortor
-                            </p>
-                            <a class="btn btn-custom" href="">Join Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Event End -->
-<!-- Team Start -->
-<div class="team">
-    <div class="container">
-        <div class="section-header text-center">
-            <p>Meet Our Team</p>
-            <h2>Awesome guys behind our charity activities</h2>
-        </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="team-item">
-                    <div class="team-img">
-                        <img src="~/images/img/team-1.jpg" alt="Team Image">
-                    </div>
-                    <div class="team-text">
-                        <h2>Donald John</h2>
-                        <p>Founder & CEO</p>
-                        <div class="team-social">
-                            <a href=""><i class="fab fa-twitter"></i></a>
-                            <a href=""><i class="fab fa-facebook-f"></i></a>
-                            <a href=""><i class="fab fa-linkedin-in"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="team-item">
-                    <div class="team-img">
-                        <img src="~/images/img/team-2.jpg" alt="Team Image">
-                    </div>
-                    <div class="team-text">
-                        <h2>Adam Phillips</h2>
-                        <p>Chef Executive</p>
-                        <div class="team-social">
-                            <a href=""><i class="fab fa-twitter"></i></a>
-                            <a href=""><i class="fab fa-facebook-f"></i></a>
-                            <a href=""><i class="fab fa-linkedin-in"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="team-item">
-                    <div class="team-img">
-                        <img src="~/images/img/team-3.jpg" alt="Team Image">
-                    </div>
-                    <div class="team-text">
-                        <h2>Thomas Olsen</h2>
-                        <p>Chef Advisor</p>
-                        <div class="team-social">
-                            <a href=""><i class="fab fa-twitter"></i></a>
-                            <a href=""><i class="fab fa-facebook-f"></i></a>
-                            <a href=""><i class="fab fa-linkedin-in"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="team-item">
-                    <div class="team-img">
-                        <img src="~/images/img/team-4.jpg" alt="Team Image">
-                    </div>
-                    <div class="team-text">
-                        <h2>James Alien</h2>
-                        <p>Advisor</p>
-                        <div class="team-social">
-                            <a href=""><i class="fab fa-twitter"></i></a>
-                            <a href=""><i class="fab fa-facebook-f"></i></a>
-                            <a href=""><i class="fab fa-linkedin-in"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Team End -->
 <!-- Volunteer Start -->
 <div class="volunteer" data-parallax="scroll" data-image-src="../../images/img/volunteer.jpg">
     <div class="container">
@@ -482,7 +293,7 @@
                     </div>
                     <div class="volunteer-text">
                         <p>
-                            Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non. Aliquam metus tortor, auctor id gravida, viverra quis sem. Curabitur non nisl nec nisi maximus. Aenean convallis porttitor. Aliquam interdum at lacus non blandit.
+                            My price does not change. It is not easy to wish to decorate the classroom. Some fear the torturer, the author of this pregnant, cartoon who I'm not the biggest players.
                         </p>
                     </div>
                 </div>
@@ -491,111 +302,6 @@
     </div>
 </div>
 <!-- Volunteer End -->
-<!-- Testimonial Start -->
-<div class="testimonial">
-    <div class="container">
-        <div class="section-header text-center">
-            <p>Testimonial</p>
-            <h2>What people are talking about our charity activities</h2>
-        </div>
-        <div class="owl-carousel testimonials-carousel">
-            <div class="testimonial-item">
-                <div class="testimonial-profile">
-                    <img src="~/images/img/testimonial-1.jpg" alt="Image">
-                    <div class="testimonial-name">
-                        <h3>Person Name</h3>
-                        <p>Profession</p>
-                    </div>
-                </div>
-                <div class="testimonial-text">
-                    <p>
-                        Lorem ipsum dolor sit amet elit. Phasel preti mi facilis ornare velit non vulputa. Aliqu metus tortor, auctor id gravid vivera quis
-                    </p>
-                </div>
-            </div>
-            <div class="testimonial-item">
-                <div class="testimonial-profile">
-                    <img src="~/images/img/testimonial-2.jpg" alt="Image">
-                    <div class="testimonial-name">
-                        <h3>Person Name</h3>
-                        <p>Profession</p>
-                    </div>
-                </div>
-                <div class="testimonial-text">
-                    <p>
-                        Lorem ipsum dolor sit amet elit. Phasel preti mi facilis ornare velit non vulputa. Aliqu metus tortor, auctor id gravid vivera quis
-                    </p>
-                </div>
-            </div>
-            <div class="testimonial-item">
-                <div class="testimonial-profile">
-                    <img src="~/images/img/testimonial-3.jpg" alt="Image">
-                    <div class="testimonial-name">
-                        <h3>Person Name</h3>
-                        <p>Profession</p>
-                    </div>
-                </div>
-                <div class="testimonial-text">
-                    <p>
-                        Lorem ipsum dolor sit amet elit. Phasel preti mi facilis ornare velit non vulputa. Aliqu metus tortor, auctor id gravid vivera quis
-                    </p>
-                </div>
-            </div>
-            <div class="testimonial-item">
-                <div class="testimonial-profile">
-                    <img src="~/images/img/testimonial-4.jpg" alt="Image">
-                    <div class="testimonial-name">
-                        <h3>Person Name</h3>
-                        <p>Profession</p>
-                    </div>
-                </div>
-                <div class="testimonial-text">
-                    <p>
-                        Lorem ipsum dolor sit amet elit. Phasel preti mi facilis ornare velit non vulputa. Aliqu metus tortor, auctor id gravid vivera quis
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Testimonial End -->
-<!-- Contact Start -->
-<div class="contact">
-    <div class="container">
-        <div class="section-header text-center">
-            <p>Get In Touch</p>
-            <h2>Contact for any query</h2>
-        </div>
-        <div class="contact-img">
-            <img src="~/images/img/contact.jpg" alt="Image">
-        </div>
-        <div class="contact-form">
-            <div id="success"></div>
-            <form name="sentMessage" id="contactForm" novalidate="novalidate">
-                <div class="control-group">
-                    <input type="text" class="form-control" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
-                    <p class="help-block text-danger"></p>
-                </div>
-                <div class="control-group">
-                    <input type="email" class="form-control" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
-                    <p class="help-block text-danger"></p>
-                </div>
-                <div class="control-group">
-                    <input type="text" class="form-control" id="subject" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
-                    <p class="help-block text-danger"></p>
-                </div>
-                <div class="control-group">
-                    <textarea class="form-control" id="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
-                    <p class="help-block text-danger"></p>
-                </div>
-                <div>
-                    <button class="btn btn-custom" type="submit" id="sendMessageButton">Send Message</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- Contact End -->
 <!-- Blog Start -->
 <div class="blog">
     <div class="container">

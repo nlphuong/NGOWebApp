@@ -20,8 +20,11 @@
     <link href="~/lib/User/flaticon/font/flaticon.css" rel="stylesheet" />
     <link href="~/lib/User/animate/animate.min.css" rel="stylesheet" />
     <link href="~/lib/User/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+
     <!-- Template Stylesheet -->
     <link href="~/css/User/style.css" rel="stylesheet" />
+    @RenderSection("Styles", required: false)
+
 </head>
 
 <body>
@@ -68,8 +71,9 @@
                     <!--Main nav menu-->
                     <a href="@Url.Content("~/User/Home")" class="nav-item nav-link">Home</a>
                     <a href="@Url.Content("~/User/About")" class="nav-item nav-link">About</a>
-                    <a href="@Url.Content("~/User/Cause")" class="nav-item nav-link">Causes</a>
-                    <a href="@Url.Content("~/User/Event")" class="nav-item nav-link">Events</a>
+                    <a href="@Url.Content("~/User/Partner")" class="nav-item nav-link">Our Partners</a>
+                    <a href="@Url.Content("~/User/Cause")" class="nav-item nav-link">Cause</a>
+                    <a href="@Url.Content("~/User/Event")" class="nav-item nav-link">Campaign</a>
                     <a href="@Url.Content("~/User/Blog")" class="nav-item nav-link">Blog</a>
                     <a href="@Url.Content("~/User/Contact")" class="nav-item nav-link">Contact</a>
                     <!--More choice-->
@@ -78,6 +82,8 @@
                         <div class="dropdown-menu">
                             <a href="@Url.Content("~/User/Detail")" class="dropdown-item">Detail Page</a>
                             <a href="@Url.Content("~/User/InviteFriend")" class="dropdown-item">Invite your friend</a>
+                            <a class="dropdown-item" asp-action="Index" asp-controller="Raise" asp-area="User">Help Center</a>
+
                         </div>
                     </div>
                     @if (Context.Session.GetString("FullName") != null)
@@ -85,10 +91,12 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Welcome @Context.Session.GetString("FullName")</a>
                             <div class="dropdown-menu">
-                                    <a href="#" class="dropdown-item">Change Profile</a>
-                                    <a class="dropdown-item" asp-action="Logout" asp-controller="Account" asp-area="User">Logout</a>
+                               	<a href="@Url.Content("~/User/Account/UserProfile")" class="dropdown-item">My Profile</a>
+                                <a class="dropdown-item" asp-action="Logout" asp-controller="Account" asp-area="User">Logout</a>
+                                   
+                                   
 
-                                
+
                             </div>
                         </div>
                     }

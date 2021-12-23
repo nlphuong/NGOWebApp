@@ -12,8 +12,11 @@ namespace NGOWebApp.Data.ConfigData.Seeders
         public PartnerSeeders(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Partner>().HasData(
-                new Partner() {Id=1,OrgName="Partner1",Email="partner1@gmail.com",Phone="0593330772",Address="USA",CategoryId=2,Logo= "images/partner.jpg" },
-                new Partner() {Id=2,OrgName="Partner2",Email="partner2@gmail.com",Phone="0946963045",Address="HCM, VIet Nam",CategoryId=2,Logo= "images/partner.jpg" }
+                new Partner() {Id=1,OrgName= "Crescent Moon Charity Fund", Email= "Charity@gmail.com", Phone= "0925695555", Address= "Viet Nam", CategoryId=1,Logo= "fe4d2fad-7ff7-420e-a462-b22a61cde107.jpg" },
+                new Partner() {Id=2,OrgName= "MSD . organization", Email= "msd@email.com", Phone= "8494633356", Address="Viet Nam",CategoryId=2,Logo= "2275b1b0-4acd-4177-842c-51784e4158bb.jpg" },
+                new Partner() {Id=3,OrgName= "Operation Smile", Email= "smile@gmail.com", Phone= "0946963056", Address="Viet Nam",CategoryId=3,Logo= "de1be3a6-8d06-40c7-a09b-190458ca920b.jpg" },
+                new Partner() {Id=4,OrgName= "Power 2000", Email= "2000power@gmail.com", Phone= "0948633555", Address="Viet Nam",CategoryId=4,Logo= "4c35d10b-7741-4a1e-ad47-0518064564eb.jpg" },
+                new Partner() {Id=5,OrgName= "Flower and Sharing Charity Fund", Email= "flower@gmail.com", Phone= "8494633356", Address="Viet Nam",CategoryId=2,Logo= "868a1bbd-c9d3-4802-842d-12a7bf141f68.jpg" }
                 );
         }
     }

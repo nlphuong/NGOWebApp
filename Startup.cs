@@ -28,14 +28,12 @@ namespace NGOWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectDB")));
-
             services.AddControllersWithViews();
             services.AddSession();
             services.AddPaging(options => {
                 options.ViewName = "Bootstrap4";
             });
         }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

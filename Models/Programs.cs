@@ -18,14 +18,17 @@ namespace NGOWebApp.Models
         [Required]
         public string Content { get; set; }
         public double? ExpectedAmount { get; set; }
-        public int PartnerId { get; set; }
-        public DateTime? Duration { get; set; }
+        public int? PartnerId { get; set; }
+        public DateTime Duration { get; set; }
         public int? Status { get; set; }//1: đang quyên góp /2: đã quyên góp xong nhưng chưa thực hiện/ 3: đã làm(tiền đã trao tới đích)
-        public DateTime? CreatedAt { get; set; }
+        public string Photo { get; set; }
+        public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeleteAt { get; set; }
         public virtual Partner GetPartner { get; set; }
         public virtual IEnumerable<Interested> GetInteresteds { get; set; }
         public virtual IEnumerable<Photos> GetPhotos { get; set; }
+        [ForeignKey("ProgramId")]
+        public virtual IEnumerable<Donate> GetDonates { get; set; }
     }
 }
