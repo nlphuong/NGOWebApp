@@ -54,6 +54,7 @@ namespace NGOWebApp.Areas.User.Controllers
                         HttpContext.Session.Clear();
                         HttpContext.Session.SetString("FullName", objAccount.FullName);
                         HttpContext.Session.SetInt32("Role", objAccount.RoleId);
+                        HttpContext.Session.SetInt32("AccountId", objAccount.Id);
                         HttpContext.Session.SetInt32("Id", objAccount.Id);
 
                         if (objAccount.RoleId == 1)
