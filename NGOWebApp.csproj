@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\**" />
+    <Content Remove="Services\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="wwwroot\css\elFinder-Material-Theme\.github\img\preview-default.png" />
     <Content Include="wwwroot\css\elFinder-Material-Theme\.github\img\preview-gray.png" />
     <Content Include="wwwroot\css\elFinder-Material-Theme\.github\img\preview-light.png" />
@@ -30,8 +37,6 @@
   <ItemGroup>
     <Folder Include="Areas\Files\Data\" />
     <Folder Include="Areas\Files\Models\" />
-    <Folder Include="Services\Implements\" />
-    <Folder Include="Services\Interfaces\" />
     <Folder Include="wwwroot\css\elFinder-Material-Theme\.git\objects\info\" />
     <Folder Include="wwwroot\css\elFinder-Material-Theme\.git\refs\tags\" />
     <Folder Include="wwwroot\images\LogoPartner\" />

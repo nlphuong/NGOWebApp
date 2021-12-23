@@ -12,7 +12,7 @@ namespace NGOWebApp.Data.ConfigData.Seeders
         public InterestedSeeders(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Interested>().HasData(
-                new Interested { Id=1,AccountId=4,ProgramId=1,PartnerId=1}
+                new Interested { Id=1,AccountId=6,ProgramId=1,PartnerId=1}
                 );
         }
     }

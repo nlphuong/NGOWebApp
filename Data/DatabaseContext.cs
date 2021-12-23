@@ -111,6 +111,8 @@ namespace NGOWebApp.Data
             modelBuilder.Entity<Programs>().HasMany(p => p.GetInteresteds).WithOne(i => i.GetPrograms);
             //(Program-Photos)
             modelBuilder.Entity<Programs>().HasMany(p => p.GetPhotos).WithOne(p => p.GetPrograms);
+            //(Program-Donate)
+            modelBuilder.Entity<Programs>().HasMany(p => p.GetDonates).WithOne(p => p.GetPrograms);
             #endregion
 
             //Aply seedders
