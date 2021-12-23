@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using NGOWebApp.Models;
 
 
 namespace NGOWebApp
@@ -27,7 +27,6 @@ namespace NGOWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectDB")));
-
             services.AddControllersWithViews();
             services.AddHttpContextAccessor();
             services.AddSession(Options => {
