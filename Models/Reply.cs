@@ -13,15 +13,19 @@ namespace NGOWebApp.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        [Display(Name ="FullName")]
         public int AccountId { get; set; }
         [Required]
         public string Content { get; set; }
         //answer for queryId
-        public int? QueryId { get; set; }
+        [Display(Name ="Title")]
+        public int QueryId { get; set; }
         public int Status { get; set; } //1.Active 2.InActive/delete  default:1
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
+        [ForeignKey("AccountId")]
         public virtual Account GetAccount { get; set; }
+        [ForeignKey("QueryId")]
         public virtual Query GetQuery { get; set; }
     }
 }

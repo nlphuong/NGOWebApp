@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<NGOWebApp.Models.ViewModels.ProgramDonateVM>
+@{
     ViewData["Title"] = "Cause";
 }
 <!-- Page Header Start -->
@@ -102,102 +103,43 @@
             <h2>Let's know about charity causes around the world</h2>
         </div>
         <div class="owl-carousel causes-carousel">
-            <div class="causes-item">
-                <div class="causes-img">
-                    <img src="~/images/img/causes-1.jpg" alt="Image">
-                </div>
-                <div class="causes-progress">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                            <span>85%</span>
+            @foreach (var item in Model)
+            {
+                <div class="causes-item">
+                    <div class="causes-img">
+                        <img src="~/@item.Programs.Photo" alt="Image">
+                    </div>
+                    <div class="causes-progress">
+                        <div class="progress">
+                            @{ var a = (decimal)(@item.SumDonate / @item.Programs.ExpectedAmount);}
+                            <div class="progress-bar" role="progressbar" aria-valuenow="@Math.Round(a*100,0)" aria-valuemin="0" aria-valuemax="100">
+                                <span>@Math.Round((decimal)(item.SumDonate / item.Programs.ExpectedAmount) * 100, 0)</span>
+                            </div>
+                        </div>
+                        <div class="progress-text">
+                            <p><strong> @item.SumDonate / @item.Programs.ExpectedAmount $</strong></p>
+                           
                         </div>
                     </div>
-                    <div class="progress-text">
-                        <p><strong>Raised:</strong> $100000</p>
-                        <p><strong>Goal:</strong> $50000</p>
-                    </div>
-                </div>
-                <div class="causes-text">
-                    <h3>Lorem ipsum dolor sit</h3>
-                    <p>Lorem ipsum dolor sit amet elit. Phasell nec pretium mi. Curabit facilis ornare velit non vulputa</p>
-                </div>
-                <div class="causes-btn">
-                    <a class="btn btn-custom">Learn More</a>
-                    <a class="btn btn-custom">Donate Now</a>
-                </div>
-            </div>
-            <div class="causes-item">
-                <div class="causes-img">
-                    <img src="~/images/img/causes-2.jpg" alt="Image">
-                </div>
-                <div class="causes-progress">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                            <span>85%</span>
+                    <div class="causes-text">
+                        <div style="height:180px">
+                            <h4>@item.Programs.ShortContent</h4>
                         </div>
-                    </div>
-                    <div class="progress-text">
-                        <p><strong>Raised:</strong> $100000</p>
-                        <p><strong>Goal:</strong> $50000</p>
-                    </div>
-                </div>
-                <div class="causes-text">
-                    <h3>Lorem ipsum dolor sit</h3>
-                    <p>Lorem ipsum dolor sit amet elit. Phasell nec pretium mi. Curabit facilis ornare velit non vulputa</p>
-                </div>
-                <div class="causes-btn">
-                    <a class="btn btn-custom">Learn More</a>
-                    <a class="btn btn-custom">Donate Now</a>
-                </div>
-            </div>
-            <div class="causes-item">
-                <div class="causes-img">
-                    <img src="~/images/img/causes-3.jpg" alt="Image">
-                </div>
-                <div class="causes-progress">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                            <span>85%</span>
+                        <div class="row">
+                            <div class="col-sm-3"><img  src="~/images/LogoPartner/@item.Programs.GetPartner.Logo" /></div>
+                            <div class="col-sm-6" style="color:mediumaquamarine">@item.Programs.GetPartner.OrgName</div>
+                            <div class="col-sm-3 text-danger" style="font-size:15px">@item.DateDiff day left</div>
                         </div>
+                       
                     </div>
-                    <div class="progress-text">
-                        <p><strong>Raised:</strong> $100000</p>
-                        <p><strong>Goal:</strong> $50000</p>
-                    </div>
-                </div>
-                <div class="causes-text">
-                    <h3>Lorem ipsum dolor sit</h3>
-                    <p>Lorem ipsum dolor sit amet elit. Phasell nec pretium mi. Curabit facilis ornare velit non vulputa</p>
-                </div>
-                <div class="causes-btn">
-                    <a class="btn btn-custom">Learn More</a>
-                    <a class="btn btn-custom">Donate Now</a>
-                </div>
-            </div>
-            <div class="causes-item">
-                <div class="causes-img">
-                    <img src="~/images/img/causes-4.jpg" alt="Image">
-                </div>
-                <div class="causes-progress">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                            <span>85%</span>
-                        </div>
-                    </div>
-                    <div class="progress-text">
-                        <p><strong>Raised:</strong> $100000</p>
-                        <p><strong>Goal:</strong> $50000</p>
+                    <div class="causes-btn">
+                        <a class="btn btn-custom" asp-action="Details" asp-controller="Event" asp-route-Id="@item.Programs.Id">Learn More</a>
+                        <a class="btn btn-custom">Donate Now</a>
                     </div>
                 </div>
-                <div class="causes-text">
-                    <h3>Lorem ipsum dolor sit</h3>
-                    <p>Lorem ipsum dolor sit amet elit. Phasell nec pretium mi. Curabit facilis ornare velit non vulputa</p>
-                </div>
-                <div class="causes-btn">
-                    <a class="btn btn-custom">Learn More</a>
-                    <a class="btn btn-custom">Donate Now</a>
-                </div>
-            </div>
+            }
+
+
         </div>
     </div>
 </div>
