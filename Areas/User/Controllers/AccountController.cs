@@ -24,22 +24,18 @@ namespace NGOWebApp.Areas.User.Controllers
 
         public IActionResult Index()
         {
-         
-                return View();
-            
+            return View();
         }
 
         //Login
         [HttpGet]
         public IActionResult Login()
         {
-        
             return View();
         }
 
         [HttpPost, ActionName("Login")]
         [ValidateAntiForgeryToken]
-
         public IActionResult Login(string Email, string Password)
         {
             if(ModelState.IsValid)
@@ -78,11 +74,11 @@ namespace NGOWebApp.Areas.User.Controllers
                     ViewBag.ExistUser = "Email is not reigister";
                     return View();
                 }
-
             
                 
 
             }
+
             TempData[linkImage.Error] = "Login Action is error. Please check again";
          
             return View();
@@ -93,7 +89,6 @@ namespace NGOWebApp.Areas.User.Controllers
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Login");
-           
         }
 
         //Register
@@ -131,6 +126,52 @@ namespace NGOWebApp.Areas.User.Controllers
             }
 
             return View(accountVM);
+        }
+
+        //Change Password
+        [HttpGet]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ChangePassword(string newPass,string oldPass)
+        {
+            
+            if (String.IsNullOrEmpty(oldPass))
+            {
+                ViewBag.oldPass = "Please input current Pass!";
+            }
+            else if(String.IsNullOrEmpty(newPass))
+            {
+                ViewBag.newPass = "Please input New Password!";
+            }
+            else
+            {
+                if (newPass.Equals(oldPass))
+                {
+                    ViewBag.newPass = "New Password must different!";
+                    return View();
+                }
+                else
+                {
+                    var id = HttpContext.Session.GetInt32("Id");
+                    var account = _db.GetAccounts.Find(id);
+                    if (account.Password.Equals(GetMD5.CheckMD5(oldPass)))
+                    {
+                        account.Password = GetMD5.CheckMD5(newPass);
+                        _db.SaveChanges();
+                        ViewBag.Success = "Reset Password success!!";
+                        return View();
+                    }
+                    else
+                    {
+                        ViewBag.oldPass = "Password incorrect!";
+                    }
+                }
+            }
+            return View();
         }
 
         //Forgot password
