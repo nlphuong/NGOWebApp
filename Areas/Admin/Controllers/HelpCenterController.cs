@@ -65,6 +65,7 @@ namespace NGOWebApp.Areas.Admin.Controllers
                 _db.GetQueries.Update(questionVM.query);
                 _db.GetReplies.Add(questionVM.reply);
                 _db.SaveChanges();
+                TempData[linkImage.Success] = "Answer Action Complete Successfully";
                 return View(questionVM);
 
             }
@@ -105,7 +106,8 @@ namespace NGOWebApp.Areas.Admin.Controllers
                 obj.Status = 2;
                 _db.GetReplies.Update(obj);
                 _db.SaveChanges();
-               return RedirectToAction("DetailReplies", new { id = obj.QueryId });
+                TempData[linkImage.Success] = "Deleted Action Complete Successfully";
+                return RedirectToAction("DetailReplies", new { id = obj.QueryId });
             }
           
         }
@@ -172,11 +174,12 @@ namespace NGOWebApp.Areas.Admin.Controllers
                 }
 
                 _db.SaveChanges();
+                TempData[linkImage.Success] = "Action Complete Successfully";
                 return RedirectToAction("IndexCommon");
 
 
             }
-
+            TempData[linkImage.Error] = "Action is  error. Please check again";
             return View(query);
         }
 
@@ -214,6 +217,7 @@ namespace NGOWebApp.Areas.Admin.Controllers
             obj.Status = 2;
             _db.GetQueries.Update(obj);
             _db.SaveChanges();
+            TempData[linkImage.Success] = "Deleted Commom Question Complete Successfully";
             return RedirectToAction("IndexCommon");
         }
 

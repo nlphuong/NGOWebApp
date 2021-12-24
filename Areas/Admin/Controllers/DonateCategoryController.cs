@@ -116,6 +116,7 @@ namespace NGOWebApp.Areas.Admin.Controllers
                 }
 
                 _db.SaveChanges();
+                TempData[linkImage.Success] = "Action Complete  Successfully";
                 return RedirectToAction("Index");
 
 
@@ -155,6 +156,7 @@ namespace NGOWebApp.Areas.Admin.Controllers
             }
             obj.Status = 2;
             _db.GetDonateCategories.Update(obj);
+            TempData[linkImage.Success] = "Donate Category Delete Successfully";
             _db.SaveChanges();
             return RedirectToAction("Index");
         }

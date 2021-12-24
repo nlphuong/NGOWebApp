@@ -10,7 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NGOWebApp.Models;
-
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace NGOWebApp
 {
@@ -48,6 +50,7 @@ namespace NGOWebApp
             }
             app.UseStaticFiles();
 
+       
             app.UseRouting();
             app.UseSession();
 

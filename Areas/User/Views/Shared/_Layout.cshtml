@@ -17,6 +17,7 @@
     <!-- CSS Libraries -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <link href="~/lib/User/flaticon/font/flaticon.css" rel="stylesheet" />
     <link href="~/lib/User/animate/animate.min.css" rel="stylesheet" />
     <link href="~/lib/User/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
@@ -91,10 +92,10 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Welcome @Context.Session.GetString("FullName")</a>
                             <div class="dropdown-menu">
-                               	<a href="@Url.Content("~/User/Account/UserProfile")" class="dropdown-item">My Profile</a>
+                                <a href="@Url.Content("~/User/Account/UserProfile")" class="dropdown-item">My Profile</a>
                                 <a class="dropdown-item" asp-action="Logout" asp-controller="Account" asp-area="User">Logout</a>
-                                   
-                                   
+
+
 
 
                             </div>
@@ -110,7 +111,7 @@
         </div>
     </div>
     <!-- Nav Bar End -->
-
+    <partial name="_Notifications" />
     @RenderBody()
 
     <!-- Footer Start -->

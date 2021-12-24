@@ -1,4 +1,6 @@
-﻿<!-- Page Header Start -->
+﻿@model Email
+<!-- Page Header Start -->
+
 <div class="page-header">
     <div class="container">
         <div class="row">
@@ -13,24 +15,33 @@
     </div>
 </div>
 <!-- Page Header End -->
+
 <!-- Volunteer Start -->
 <div class="container">
+    @if (ViewBag.EmailSentMessage != null)
+    {
+<div class="d-flex justify-content-center alert alert-success">
+    <label>@ViewBag.EmailSentMessage</label>
+</div>}
     <div class="volunteer" data-parallax="scroll" data-image-src="../../images/img/volunteer.jpg">
         <div class="row align-items-center">
             <div class="col-lg-5">
                 <div class="volunteer-form">
-                    <form>
+                    <form method="post">
                         <div class="control-group">
-                            <input type="text" class="form-control" placeholder="Name" required="required" />
+                            <input type="text" class="form-control" placeholder="Name" asp-for="UserName" />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
                         </div>
                         <div class="control-group">
-                            <input type="email" class="form-control" placeholder="Email" required="required" />
+                            <input type="email" class="form-control" placeholder="Email" asp-for="Recipient" />
+                            <span asp-validation-for="Recipient" class="text-danger"></span>
                         </div>
                         <div class="control-group">
-                            <textarea class="form-control" placeholder="Why you want to become a volunteer?" required="required"></textarea>
+                            <textarea class="form-control" placeholder="Write content to send email?" asp-for="Description"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
                         <div>
-                            <button class="btn btn-custom" type="submit">Become a volunteer</button>
+                            <input type="submit" value="Send Email" class="btn  btn-primary float-right" />
                         </div>
                     </form>
                 </div>
@@ -52,3 +63,10 @@
     </div>
 </div>
 <!-- Volunteer End -->
+
+@section Scripts{
+
+    @{
+                        <partial name="_ValidationScriptsPartial" /> }
+
+}

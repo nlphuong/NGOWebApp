@@ -59,9 +59,11 @@ namespace NGOWebApp.Areas.User.Controllers
 
                         if (objAccount.RoleId == 1)
                         {
+                            TempData[linkImage.Success] = "Login Action Successfully";
                             return RedirectToAction("Index", "Home", new { area = "Admin" });
                         } else
                         {
+                            TempData[linkImage.Success] = "Login Action Successfully";
                             return RedirectToAction("Index", "Home", new { area = "User" });
                         }
 
@@ -77,8 +79,12 @@ namespace NGOWebApp.Areas.User.Controllers
                     return View();
                 }
 
-            }
+            
+                
 
+            }
+            TempData[linkImage.Error] = "Login Action is error. Please check again";
+         
             return View();
         }
    
@@ -114,6 +120,7 @@ namespace NGOWebApp.Areas.User.Controllers
                     accountVM.Account.Password = GetMD5.CheckMD5(accountVM.Account.Password);
                     _db.GetAccounts.Add(accountVM.Account);
                     _db.SaveChanges();
+                    TempData[linkImage.Success] = "Register Complete Succesfullly. Please login";
                     return RedirectToAction("Login");
                 }
                 else
