@@ -28,6 +28,7 @@ namespace NGOWebApp.Models
         public string Phone { get; set; }
       
         public string Address { get; set; }
+        [DataType(DataType.Date)]
         public DateTime Birthday { get; set; }
         public string Avatar { get; set; } //default: images/avatar.jpg
         
