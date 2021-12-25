@@ -26,6 +26,7 @@ namespace NGOWebApp.Models
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeleteAt { get; set; }
         public virtual Partner GetPartner { get; set; }
+        [ForeignKey("ProgramId")]
         public virtual IEnumerable<Interested> GetInteresteds { get; set; }
         public virtual IEnumerable<Photos> GetPhotos { get; set; }
         [ForeignKey("ProgramId")]

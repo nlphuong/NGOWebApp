@@ -10,5 +10,6 @@ namespace NGOWebApp.Models.ViewModels
         public Programs Programs { get; set; }
         public double  SumDonate { get; set; }
         public int DateDiff { get; set; }
+        public bool Interested { get; set; }
     }
 }

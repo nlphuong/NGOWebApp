@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NGOWebApp.Data;
 using NGOWebApp.Models.ViewModels;
@@ -19,13 +20,15 @@ namespace NGOWebApp.Areas.User.Controllers
         }
         public IActionResult Index()
         {
-            var model = from p in context.GetPrograms.Include(x => x.GetDonates).Include(x => x.GetPartner).OrderBy(x=>x.Status)
-
+            var accountId = HttpContext.Session.GetInt32("Id");
+            var model = from p in context.GetPrograms.Include(x => x.GetDonates).Include(x => x.GetPartner).Include(x=>x.GetInteresteds).OrderBy(x=>x.Status)
+                       
                         select new ProgramDonateVM
                         {
                             Programs = p,
                             SumDonate = p.GetDonates.Select(x => x.Amount).Sum(),
-                            DateDiff = (p.Duration - DateTime.Now).Days
+                            DateDiff = (p.Duration - DateTime.Now).Days,
+                            Interested=p.GetInteresteds.SingleOrDefault(x=>x.AccountId==accountId)==null?false:true
                         };
 
             var result = model.ToList();
