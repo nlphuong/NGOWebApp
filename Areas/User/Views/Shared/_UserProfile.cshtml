@@ -17,12 +17,6 @@
             </div>
         </div>
         <!-- END SIDEBAR USER TITLE -->
-        <!-- SIDEBAR BUTTONS -->
-        <div class="profile-userbuttons">
-            <button type="button" class="btn btn-success btn-sm">Follow</button>
-            <button type="button" class="btn btn-danger btn-sm">Message</button>
-        </div>
-        <!-- END SIDEBAR BUTTONS -->
         <!-- SIDEBAR MENU -->
         <div class="profile-usermenu">
             <ul>
@@ -45,7 +39,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a  asp-action="Index" asp-controller="Raise" asp-area="User">
                         <i class="glyphicon glyphicon-flag"></i>
                         Help Center
                     </a>
