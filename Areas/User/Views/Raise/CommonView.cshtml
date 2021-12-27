@@ -364,13 +364,13 @@
                         <ul>
                             @if (Context.Session.GetInt32("AccountId") != null)
                             {
-                                <li><a asp-action="Index">Everyone's Issues<span class="pull-right">@Model.Queries.Where(u => u.Status == 1 || u.Status == 3).Count() </span></a></li>
+                                 <li class="active"><a asp-action="CommonView">Common Issues<span class="pull-right"></span></a></li>
                                 <li><a asp-action="IndexAcccout">Created by you<span class="pull-right"> @Model.Queries.Where(u => u.AccountId == Context.Session.GetInt32("AccountId")).Count()</span></a></li>
-                                <li class="active"><a asp-action="CommonView">Common Issues<span class="pull-right"></span></a></li>
+                               
                             }
                             else
                             {
-                                <li><a asp-action="Index">Everyone's Issues<span class="pull-right">@Model.Queries.Where(u => u.Status == 1 || u.Status == 3).Count()</span></a></li>
+                                
                                 <li class="active"><a href="#">Common Issues<span class="pull-right"></span></a></li>
                             }
 

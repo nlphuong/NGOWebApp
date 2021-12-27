@@ -84,7 +84,7 @@
                         <div class="dropdown-menu">
                             <a href="@Url.Content("~/User/Detail")" class="dropdown-item">Detail Page</a>
                             <a href="@Url.Content("~/User/InviteFriend")" class="dropdown-item">Invite your friend</a>
-                            <a class="dropdown-item" asp-action="Index" asp-controller="Raise" asp-area="User">Help Center</a>
+                            <a class="dropdown-item" asp-action="CommonView" asp-controller="Raise" asp-area="User">Help Center</a>
 
                         </div>
                     </div>
@@ -94,11 +94,8 @@
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Welcome @Context.Session.GetString("FullName")</a>
                             <div class="dropdown-menu">
                                 <a href="@Url.Content("~/User/Account/UserProfile")" class="dropdown-item">My Profile</a>
+                                <a href="@Url.Content("~/User/Donate/Index")" class="dropdown-item">Donate</a>
                                 <a class="dropdown-item" asp-action="Logout" asp-controller="Account" asp-area="User">Logout</a>
-
-
-
-
                             </div>
                         </div>
                     }
