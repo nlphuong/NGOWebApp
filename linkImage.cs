@@ -9,6 +9,9 @@ namespace NGOWebApp
     {
         public static string imgPath = @"\images\DonateCategory\";
         public static string imgPathPartner = @"\images\LogoPartner\";
+        public static string emailPath = @"\template\";
 
+        public const string Success = "Success";
+        public const string Error = "Error";
     }
 }

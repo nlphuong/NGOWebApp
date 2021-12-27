@@ -12,6 +12,8 @@ namespace NGOWebApp.Models.ViewModels
 
         public bool ExistsAccount { get; set; }
 
+        public bool ExistsPass { get; set; }
+
         public bool CheckPassword { get; set; }
     }
 }

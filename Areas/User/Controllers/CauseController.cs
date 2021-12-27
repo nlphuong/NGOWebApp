@@ -19,6 +19,7 @@ namespace NGOWebApp.Areas.User.Controllers
         }
         public IActionResult Index()
         {
+            ViewBag.CauseList = context.GetDonateCategories.Include(x=>x.GetPartners).ToList();
             var model = from p in context.GetPrograms.Include(x=>x.GetDonates).Include(x=>x.GetPartner) .Where(x=>x.Status==1)
                 
                         select new ProgramDonateVM {
@@ -28,6 +29,8 @@ namespace NGOWebApp.Areas.User.Controllers
                         };
            
             var result = model.ToList();
+
+
             return View(result);
         }
     }

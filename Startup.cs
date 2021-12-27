@@ -5,12 +5,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NGOWebApp.Data;
+using ReflectionIT.Mvc.Paging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-
+using NGOWebApp.Models;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace NGOWebApp
 {
@@ -28,11 +31,9 @@ namespace NGOWebApp
         {
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectDB")));
             services.AddControllersWithViews();
-            services.AddHttpContextAccessor();
-            services.AddSession(Options => {
-                Options.IdleTimeout = TimeSpan.FromMinutes(120);
-                Options.Cookie.HttpOnly = true;
-                Options.Cookie.IsEssential = true;
+            services.AddSession();
+            services.AddPaging(options => {
+                options.ViewName = "Bootstrap4";
             });
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +49,7 @@ namespace NGOWebApp
             }
             app.UseStaticFiles();
 
+       
             app.UseRouting();
             app.UseSession();
 

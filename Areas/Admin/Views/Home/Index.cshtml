@@ -21,7 +21,7 @@
                 <div class="card bg-success text-white mb-4">
                     <div class="card-body">Donations made:&nbsp;&nbsp;&nbsp;@ViewBag.Success $</div>
                 </div>
-            </div>           
+            </div>
         </div>
         <div class="row">
             <div class="col-xl-6">
@@ -50,7 +50,7 @@
                         <i class="fas fa-chart-area mr-1"></i>
                         Area Chart
                     </div>
-                    @*<div class="card-body"><canvas id="myAreaChart" width="100" height="40" data-month=''></canvas></div>*@
+                    <div class="card-body"><canvas id="myAreaChart" width="100" height="40" data-month='@ViewBag.totalDays'></canvas></div>
                 </div>
             </div>
         </div>
@@ -58,6 +58,7 @@
 </main>
 @section Scripts {
     <script src="~/js/Admin/Chart.min.js"></script>
+    <script src="~/js/Admin/area.js"></script>
     <script src="~/js/Admin/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', { 'packages': ['corechart'] });
@@ -88,11 +89,11 @@
                                 position: "top",
                                 fontsize: "15px",
                             });
-                        
+
 
                     }
                 });
-                
+
             })
         };
         function drawOnLoad2() {
@@ -114,40 +115,17 @@
                         var barchart = new google.visualization.BarChart(
                             document.getElementById('bardiv'));
                         barchart.draw(data, {
-                            title: "Donate For Partner"                         
+                            title: "Donate For Partner"
                         });
-                       
+
 
                     }
                 });
 
             })
         };
-        //function drawOnLoad2() {
-        //    $(function () {
-        //        $.ajax({
-        //            type: 'GET',
-        //            url: 'Admin/Home/GetBarChart',
-        //            success: function (chartsdata) {
 
-        //                var Data = chartsdata.jsonList;
-        //                console.log(chartsdata);
-        //                var data = new google.visualization.DataTable();
-        //                data.addColumn('string', 'Partner');
-        //                data.addColumn('number', 'Total Donate');
-        //                for (var i = 0; i < Data.length; i++) {
-        //                    data.addRow([Data[i].partnerName,
-        //                    Data[i].sumDonate]);
-        //                }
-        //                var barchart = new google.visualization.BarChart(
-        //                    document.getElementById('bardiv'));
-        //                barchart.draw(data, null);
-                          
 
-        //            }
-        //        });
-        //}
-        
     </script>
 
 }

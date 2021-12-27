@@ -128,6 +128,7 @@ namespace NGOWebApp.Areas.Admin.Controllers
                 }
 
                 _db.SaveChanges();
+                TempData[linkImage.Success] = "Action Complete Successfully";
                 return RedirectToAction("Index");
             }
 
@@ -176,6 +177,7 @@ namespace NGOWebApp.Areas.Admin.Controllers
             obj.Status = 2;
             _db.GetPartners.Update(obj);
             _db.SaveChanges();
+            TempData[linkImage.Success] = "Delete Partner Complete Successfully";
             return RedirectToAction("Index");
         }
 
@@ -186,7 +188,7 @@ namespace NGOWebApp.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            Partner partner = _db.GetPartners.FirstOrDefault(u => u.Id == Id);
+            Partner partner = _db.GetPartners.Include(u => u.GetDonateCategory).FirstOrDefault(u => u.Id == Id);
             // product.Category = _db.Category.Find(product.CategoryId);
 
             if (partner == null)

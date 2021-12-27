@@ -79,12 +79,15 @@ namespace NGOWebApp.Areas.User.Controllers
             {
                 _db.GetQueries.Add(questionVM.query);
                 _db.SaveChanges();
-                if(HttpContext.Session.GetInt32("CheckNav") != null)
+                TempData[linkImage.Success] = "New Issue Create Complete Succesfullly";
+                if (HttpContext.Session.GetInt32("CheckNav") != null)
                 {
                     return RedirectToAction("IndexAcccout");
                 }
                 return RedirectToAction("Index");
             }
+
+            TempData[linkImage.Error] = "New Issue cannot create. Please check again";
             return View(questionVM.query);
         }
         
@@ -130,6 +133,7 @@ namespace NGOWebApp.Areas.User.Controllers
                 _db.GetQueries.Update(questionVM.query);
                 _db.GetReplies.Add(questionVM.reply);
                 _db.SaveChanges();
+                TempData[linkImage.Success] = "Post answerde is completed successfully";
                 return View(questionVM);
 
             }

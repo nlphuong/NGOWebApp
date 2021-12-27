@@ -29,6 +29,12 @@ namespace NGOWebApp.Areas.Admin.Controllers
             ViewBag.unSuccess = unSuccess.Select(x => x.Amount).Sum();
             ViewBag.Success = Success.Select(x => x.Amount).Sum();
 
+            double [] totalDay = new double[7];
+            for (int i = 0; i < totalDay.Length; i++)
+            {
+                totalDay[i] = context.GetDonates.Where(x => x.CreatedAt.Date == today.AddDays(-6+i).Date && x.CreatedAt.Month == today.AddDays(-6 + i).Month && x.CreatedAt.Year == today.AddDays(-6 + i).Year).Select(x => x.Amount).Sum();
+            }
+            ViewBag.totalDays = JsonConvert.SerializeObject(totalDay);
             //if(HttpContext.Session.GetString("FullName") == null || HttpContext.Session.GetInt32("Role") != 1)
             //{
             //    return RedirectToAction("Index", "Home", new { area = "User" });

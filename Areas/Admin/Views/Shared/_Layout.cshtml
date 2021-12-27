@@ -15,6 +15,7 @@
     <link href="~/css/Admin/custom.css" rel="stylesheet" />
     <link href="~/css/Admin/styles.css" rel="stylesheet" />
     <link href="~/css/Admin/report.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
     @*enfier*@
     <link rel="stylesheet" href="~/lib/jqueryui/themes/base/theme.css" />
@@ -63,8 +64,8 @@
                         </a>
                         <div class="collapse" id="collapseAccounts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link">Account List</a>
-                                <a class="nav-link">Create Account</a>
+                                <a class="nav-link" asp-area="Admin" asp-controller="MAccount" asp-action="Index">Account List</a>
+                                <a class="nav-link" asp-area="Admin" asp-controller="MAccount" asp-action="CreateAccount">Create Account</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" asp-area="Admin" asp-controller="DonateCategory" asp-action="Index">
@@ -74,9 +75,9 @@
                         </a>
 
                         <a class="nav-link collapsed" asp-area="Admin" asp-controller="Partner" asp-action="Index">
-                            <div class="sb-nav-link-icon"><i class="fa fa-handshake-o" aria-hidden="true"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-handshake-o" aria-hidden="true"></i></div>
                             Partner
-                        </a>                      
+                        </a>
                         <a class="nav-link collapsed" asp-area="Admin" asp-controller="Donate" asp-action="Index">
                             <div class="sb-nav-link-icon"><i class="fas fa-donate"></i></div>
                             Donate List
@@ -104,6 +105,10 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             Reply and Queries
                         </a>
+                        <a class="nav-link"asp-area="Admin" asp-action="ContactUs"  asp-controller="MAccount">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            Contactus
+                        </a>
                     </div>
                 </div>
             </nav>
@@ -111,15 +116,16 @@
         <div id="layoutSidenav_content">
             <main role="main" class="pb-3">
                 <div class="container-fluid px-4">
+                    <partial name="_Notifications" />
                     @RenderBody()
                 </div>
 
             </main>
         </div>
     </div>
-    <script src="~/js/Admin/bootstrap.bundle.min.js"></script>fon
-    @*<script src="~/js/Admin/jquery.dataTables.min.js"></script>*@
-    @*<script src="~/js/Admin/dataTables.semanticui.min.js"></script>*@
+    <script src="~/js/Admin/bootstrap.bundle.min.js"></script>
+    @*<script src="~/js/Admin/jquery.dataTables.min.js"></script>
+    <script src="~/js/Admin/dataTables.semanticui.min.js"></script>*@
     @*<script src="~/js/Admin/semantic.min.js"></script>*@
     <script src="~/js/Admin/sweetalert.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?client=gme-americancancersociety&v=3&libraries=places&channel=digital_strides"></script>

@@ -18,7 +18,7 @@ namespace NGOWebApp.Models
         [Required]
         public string Content { get; set; }
         public double? ExpectedAmount { get; set; }
-        public int PartnerId { get; set; }
+        public int? PartnerId { get; set; }
         public DateTime Duration { get; set; }
         public int? Status { get; set; }//1: đang quyên góp /2: đã quyên góp xong nhưng chưa thực hiện/ 3: đã làm(tiền đã trao tới đích)
         public string Photo { get; set; }
