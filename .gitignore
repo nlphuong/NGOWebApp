@@ -8,11 +8,8 @@ obj/
 bin/ 
 Migrations/
 appsettings.json
-<<<<<<< HEAD
 appsettings.Development.json
-=======
 NGOWebApp.csproj.user
->>>>>>> 13d6ae2aa0e5af994655c19a497f9c38e90d96fb
 
 # User-specific files
 *.rsuser
