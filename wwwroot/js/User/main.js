@@ -128,7 +128,6 @@
         time: 2000
     });
 
-
     // Testimonials carousel
     $(".testimonials-carousel").owlCarousel({
         center: true,

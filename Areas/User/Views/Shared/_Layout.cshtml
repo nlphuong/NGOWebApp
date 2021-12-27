@@ -63,7 +63,7 @@
     <!-- Nav Bar Start -->
     <div class="navbar navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
-            <a href="index.html" class="navbar-brand">NGO</a>
+            <a href="@Url.Content("~/User/Home")" class="navbar-brand">NGO</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -76,13 +76,11 @@
                     <a href="@Url.Content("~/User/Partner")" class="nav-item nav-link">Our Partners</a>
                     <a href="@Url.Content("~/User/Cause")" class="nav-item nav-link">Cause</a>
                     <a href="@Url.Content("~/User/Event")" class="nav-item nav-link">Campaign</a>
-                    <a href="@Url.Content("~/User/Blog")" class="nav-item nav-link">Blog</a>
                     <a href="@Url.Content("~/User/Contact")" class="nav-item nav-link">Contact</a>
                     <!--More choice-->
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu">
-                            <a href="@Url.Content("~/User/Detail")" class="dropdown-item">Detail Page</a>
                             <a href="@Url.Content("~/User/InviteFriend")" class="dropdown-item">Invite your friend</a>
                             <a class="dropdown-item" asp-action="CommonView" asp-controller="Raise" asp-area="User">Help Center</a>
 
@@ -119,7 +117,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-contact">
                         <h2>Our Head Office</h2>
-                        <p><i class="fa fa-map-marker-alt"></i>123 Street, New York, USA</p>
+                        <p><i class="fa fa-map-marker-alt"></i>123 CMT, Distric 3, HCM</p>
                         <p><i class="fa fa-phone-alt"></i>+012 345 67890</p>
                         <p><i class="fa fa-envelope"></i>info@example.com</p>
                         <div class="footer-social">
@@ -134,21 +132,17 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-link">
                         <h2>Popular Links</h2>
-                        <a href="">About Us</a>
-                        <a href="">Contact Us</a>
-                        <a href="">Popular Causes</a>
-                        <a href="">Upcoming Events</a>
-                        <a href="">Latest Blog</a>
+                        <a href="@Url.Content("~/User/About")">About Us</a>
+                        <a href="@Url.Content("~/User/Contact")">Contact Us</a>
+                        <a href="@Url.Content("~/User/Cause")">Popular Causes</a>
+                        <a href="@Url.Content("~/User/Event")">Upcoming Campaign</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-link">
                         <h2>Useful Links</h2>
-                        <a href="">Terms of use</a>
-                        <a href="">Privacy policy</a>
-                        <a href="">Cookies</a>
-                        <a href="">Help</a>
-                        <a href="">FQAs</a>
+                        <a href="@Url.Content("~/User/Raise")">Help</a>
+                        <a href="@Url.Content("~/User/Raise")">FQAs</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
