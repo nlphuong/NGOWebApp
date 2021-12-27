@@ -95,11 +95,42 @@
     </div>
 </div>
 <!-- Service End -->
+<div class="event">
+    <div class="container">
+        <div class="section-header text-center">         
+            <h2>My Cause</h2>
+        </div>
+        <div class="row">
+            @{
+                var model = ViewBag.CauseList;
+            }
+            @foreach (var item in model)
+            {
+                <div class="col-md-4" style="margin-top:15px">
+                    <div class="card" style="width: 18rem;">
+                        <div style="height:180px">
+                            <img class="card-img-top" style="height:100%" src="~/@item.Photo" alt="Card image cap">
+                        </div>
+
+                        <div class="card-body">
+                            <h6 class="card-title">@item.Name</h6>
+                            @*<p style="color:darkcyan">Phone: &nbsp; @item.GetPartner.Phone</p>
+                            <p style="color:darkcyan">Campaign: &nbsp; @item.SumProgram</p>*@
+
+
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
 <!-- Causes Start -->
 <div class="causes">
     <div class="container">
         <div class="section-header text-center">
-            <p>Popular Causes</p>
+            <p>Popular Campaign</p>
             <h2>Let's know about charity causes around the world</h2>
         </div>
         <div class="owl-carousel causes-carousel">

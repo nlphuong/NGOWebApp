@@ -10,10 +10,12 @@ using NGOWebApp.Data;
 using NGOWebApp.Models.ViewModels;
 using System.Web.Helpers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using System.Net.Mail;
 using Microsoft.AspNetCore.Server;
+
 
 namespace NGOWebApp.Areas.User.Controllers
 {
@@ -297,5 +299,38 @@ namespace NGOWebApp.Areas.User.Controllers
                 return View(account);
             }
         }
+        //Transaction
+
+        [HttpGet]        
+        public IActionResult Transaction()
+        {
+            var id = HttpContext.Session.GetInt32("Id");
+            if (id==null)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                var transac = _db.GetDonates.Include(x => x.GetPrograms).Include(x=>x.GetPartner).Include(x=>x.GetDonateCategory).Where(x=>x.AccountId==id).ToList();
+                return View(transac);
+            }
+           
+        }
+        [HttpGet]
+        public IActionResult Activity()
+        {
+            var id = HttpContext.Session.GetInt32("Id");
+            if (id == null)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                var activity = _db.GetInteresteds.Include(x => x.GetPrograms).Include(x=>x.GetAccount).Where(x=>x.AccountId==id).OrderByDescending(x=>x.CreatedAt).ToList();
+                return View(activity);
+            }
+
+        }
+
     }
 }
