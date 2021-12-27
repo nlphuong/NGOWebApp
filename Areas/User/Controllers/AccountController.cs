@@ -10,6 +10,12 @@ using NGOWebApp.Data;
 using NGOWebApp.Models.ViewModels;
 using System.Web.Helpers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using System.Net.Mail;
+using Microsoft.AspNetCore.Server;
+
 
 namespace NGOWebApp.Areas.User.Controllers
 {
@@ -17,9 +23,11 @@ namespace NGOWebApp.Areas.User.Controllers
     public class AccountController : Controller
     {
         private readonly  DatabaseContext _db;
-        public AccountController(DatabaseContext db)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public AccountController(DatabaseContext db, IWebHostEnvironment webHostEnvironment)
         {
             _db = db;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -180,7 +188,101 @@ namespace NGOWebApp.Areas.User.Controllers
         {
             return View();
         }
-        
+
+        [HttpPost, ActionName("ForgotPassword")]
+        [ValidateAntiForgeryToken]
+        public IActionResult ForgotPasswordPost(Account account)
+        {
+          
+                var objAccount = _db.GetAccounts.AsNoTracking().FirstOrDefault(u=>u.Email == account.Email);
+                if (objAccount == null)
+                {
+                    ViewBag.Error = "Email does not exit.Please register";
+                    return View(account);
+                } else
+            {
+                string webRootPath = _webHostEnvironment.WebRootPath;
+                string linkTempleate = webRootPath + linkImage.emailPath;
+                string resetCode = Guid.NewGuid().ToString();
+                string body = string.Empty;
+                using (StreamReader reader = new StreamReader(Path.Combine(linkTempleate, "emailRessetPassword.html")))
+                {
+                    body = reader.ReadToEnd();
+                }
+
+                body = body.Replace("{RessetPassword}", resetCode);
+
+
+                //Email & Content 
+                MailMessage message = new MailMessage(new MailAddress("ngowebsitedonate@gmail.com", "Resset Your Password"), new MailAddress(objAccount.Email));
+                message.Subject = "Resset Your Password";
+                message.Body = body;
+                message.IsBodyHtml = true;
+
+
+                //Server Details
+                SmtpClient smtp = new SmtpClient();
+                //Outlook ports - 465 (SSL) or 587 (TLS)
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                //Credentials
+                System.Net.NetworkCredential credentials = new System.Net.NetworkCredential();
+                credentials.UserName = "ngowebsitedonate@gmail.com";
+                credentials.Password = "team4pro";
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = credentials;
+
+                smtp.Send(message);
+                objAccount.Password = resetCode;
+                _db.GetAccounts.Update(objAccount);
+                _db.SaveChanges();
+                TempData[linkImage.Success] = "Passowrd is sent to your email. Please check your email";
+
+                return RedirectToAction(nameof(ResstPassword));
+            }
+          
+
+        }
+
+        //Change Password after resset 
+        [HttpGet]
+        public IActionResult ResstPassword()
+        {
+            return View();
+        }
+        [HttpPost, ActionName("ResstPassword")]
+        [ValidateAntiForgeryToken]
+        public IActionResult ResstPassword(string? ressetPass, Account account)
+        {
+            if(ressetPass != null)
+            {
+                var objAccount = _db.GetAccounts.AsNoTracking().FirstOrDefault(u => u.Password == ressetPass);
+                if (objAccount == null)
+                {
+                    ViewBag.Error = "Your code is error. Please input code from your email";
+                    return View();
+                } else
+                {
+                    objAccount.Password = GetMD5.CheckMD5(account.Password);
+                    _db.GetAccounts.Update(objAccount);
+                    _db.SaveChanges();
+                    TempData[linkImage.Success] = "Resset password is successfull. Please login to your account";
+
+                    return RedirectToAction(nameof(Login));
+                }
+
+            } else
+            {
+                ViewBag.Error = "Please input your code to resset your password";
+                return View();
+            }
+          
+        }
+
+
 
         //User profile
         public IActionResult UserProfile()
@@ -197,5 +299,38 @@ namespace NGOWebApp.Areas.User.Controllers
                 return View(account);
             }
         }
+        //Transaction
+
+        [HttpGet]        
+        public IActionResult Transaction()
+        {
+            var id = HttpContext.Session.GetInt32("Id");
+            if (id==null)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                var transac = _db.GetDonates.Include(x => x.GetPrograms).Include(x=>x.GetPartner).Include(x=>x.GetDonateCategory).Where(x=>x.AccountId==id).ToList();
+                return View(transac);
+            }
+           
+        }
+        [HttpGet]
+        public IActionResult Activity()
+        {
+            var id = HttpContext.Session.GetInt32("Id");
+            if (id == null)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                var activity = _db.GetInteresteds.Include(x => x.GetPrograms).Include(x=>x.GetAccount).Where(x=>x.AccountId==id).OrderByDescending(x=>x.CreatedAt).ToList();
+                return View(activity);
+            }
+
+        }
+
     }
 }

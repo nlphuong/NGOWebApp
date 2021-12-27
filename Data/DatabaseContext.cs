@@ -37,7 +37,7 @@ namespace NGOWebApp.Data
            
             modelBuilder.Entity<Account>().Property(a => a.RoleId).HasDefaultValue(2);
             modelBuilder.Entity<Account>().Property(a => a.Avatar).HasDefaultValue("images/avatar.jpg");
-            modelBuilder.Entity<Account>().Property(a => a.CreatedAt).HasDefaultValue(DateTime.Now);
+            modelBuilder.Entity<Account>().Property(a => a.CreatedAt).HasDefaultValueSql("getdate()");
             modelBuilder.Entity<Account>().Property(a => a.Status).HasDefaultValue(1);
 
             //DonateCategory
@@ -45,37 +45,37 @@ namespace NGOWebApp.Data
 
 
             //contacUs
-            modelBuilder.Entity<ContactUs>().Property(a => a.CreatedAt).HasDefaultValue(DateTime.Now);
+            modelBuilder.Entity<ContactUs>().Property(a => a.CreatedAt).HasDefaultValueSql("getdate()");
             modelBuilder.Entity<ContactUs>().Property(a => a.Status).HasDefaultValue(1);
 
             //Donate
-            modelBuilder.Entity<Donate>().Property(a => a.CreatedAt).HasDefaultValue(DateTime.Now);
+            modelBuilder.Entity<Donate>().Property(a => a.CreatedAt).HasDefaultValueSql("getdate()");
             modelBuilder.Entity<Donate>().Property(a => a.Status).HasDefaultValue(1);
 
             //Fund
-            modelBuilder.Entity<Fund>().Property(a => a.CreatedAt).HasDefaultValue(DateTime.Now);
+            modelBuilder.Entity<Fund>().Property(a => a.CreatedAt).HasDefaultValueSql("getdate()");
             modelBuilder.Entity<Fund>().Property(a => a.Status).HasDefaultValue(1);
 
             //Interested
-            modelBuilder.Entity<Interested>().Property(a => a.CreatedAt).HasDefaultValue(DateTime.Now);
+            modelBuilder.Entity<Interested>().Property(a => a.CreatedAt).HasDefaultValueSql("getdate()");
             modelBuilder.Entity<Interested>().Property(a => a.Status).HasDefaultValue(1);
 
             //Partner
-            modelBuilder.Entity<Partner>().Property(a => a.CreatedAt).HasDefaultValue(DateTime.Now);
-            modelBuilder.Entity<Partner>().Property(a => a.UpdatedAt).HasDefaultValue(DateTime.Now);
+            modelBuilder.Entity<Partner>().Property(a => a.CreatedAt).HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<Partner>().Property(a => a.UpdatedAt).HasDefaultValueSql("getdate()");
             modelBuilder.Entity<Partner>().Property(a => a.Status).HasDefaultValue(1);
 
             //Programs
-            modelBuilder.Entity<Programs>().Property(a => a.CreatedAt).HasDefaultValue(DateTime.Now);                      
+            modelBuilder.Entity<Programs>().Property(a => a.CreatedAt).HasDefaultValueSql("getdate()");                      
             modelBuilder.Entity<Programs>().Property(a => a.Status).HasDefaultValue(1);
             modelBuilder.Entity<Programs>().Property(a => a.ExpectedAmount).HasDefaultValue((double)0);
 
             //Query
-            modelBuilder.Entity<Query>().Property(a => a.CreatedAt).HasDefaultValue(DateTime.Now);
+            modelBuilder.Entity<Query>().Property(a => a.CreatedAt).HasDefaultValueSql("getdate()");
             modelBuilder.Entity<Query>().Property(a => a.Status).HasDefaultValue(1);
 
             //Reply
-            modelBuilder.Entity<Reply>().Property(a => a.CreatedAt).HasDefaultValue(DateTime.Now);
+            modelBuilder.Entity<Reply>().Property(a => a.CreatedAt).HasDefaultValueSql("getdate()");
             modelBuilder.Entity<Reply>().Property(a => a.Status).HasDefaultValue(1);
 
             #endregion

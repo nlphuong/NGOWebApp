@@ -13,7 +13,7 @@ namespace NGOWebApp.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public int AccountId { get; set; }      
+        public int? AccountId { get; set; }      
         public int? CategoryId { get; set; }
         public int? PartnerId { get; set; }
         public double Amount { get; set; }
