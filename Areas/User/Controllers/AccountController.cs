@@ -311,7 +311,7 @@ namespace NGOWebApp.Areas.User.Controllers
             }
             else
             {
-                var transac = _db.GetDonates.Include(x => x.GetPrograms).Include(x=>x.GetPartner).Include(x=>x.GetDonateCategory).Where(x=>x.AccountId==id).ToList();
+                var transac = _db.GetDonates.Include(x => x.GetPrograms).Include(x=>x.GetPartner).Include(x=>x.GetDonateCategory).Where(x=>x.AccountId==id).OrderByDescending(x=>x.CreatedAt).ToList();
                 return View(transac);
             }
            

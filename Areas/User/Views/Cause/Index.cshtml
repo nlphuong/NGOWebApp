@@ -154,18 +154,26 @@
                     </div>
                     <div class="causes-text">
                         <div style="height:180px">
-                            <h4>@item.Programs.ShortContent</h4>
+                            @if (item.Programs.ShortContent.Length > 120)
+                            {
+                                <h4>@item.Programs.ShortContent.Substring(0, 120) ...</h4>
+                            }
+                            else
+                            {
+                                <h4>@item.Programs.ShortContent</h4>
+                            }
+
                         </div>
-                        <div class="row">
+                        <div class="row" style="height:40px">
                             <div class="col-sm-3"><img  src="~/images/LogoPartner/@item.Programs.GetPartner.Logo" /></div>
                             <div class="col-sm-6" style="color:mediumaquamarine">@item.Programs.GetPartner.OrgName</div>
                             <div class="col-sm-3 text-danger" style="font-size:15px">@item.DateDiff day left</div>
                         </div>
                        
                     </div>
-                    <div class="causes-btn">
+                    <div class="causes-btn" style="height:50px">
                         <a class="btn btn-custom" asp-action="Details" asp-controller="Event" asp-route-Id="@item.Programs.Id">Learn More</a>
-                        <a class="btn btn-custom">Donate Now</a>
+                        <a class="btn btn-custom" asp-area="User" asp-controller="Donate" asp-action="DonateToProgram" asp-route-programId="@item.Programs.Id">Donate Now</a>
                     </div>
                 </div>
             }
