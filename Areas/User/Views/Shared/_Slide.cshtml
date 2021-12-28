@@ -1,4 +1,5 @@
-﻿<!-- Carousel Start -->
+﻿@using Microsoft.AspNetCore.Http
+<!-- Carousel Start -->
 <div class="carousel">
     <div class="container-fluid">
         <div class="owl-carousel">
@@ -12,7 +13,14 @@
                         We are here for children, We are here for the world
                     </p>
                     <div class="carousel-btn">
-                        <a class="btn btn-custom" href="">Donate Now</a>
+                        @if (Context.Session.GetString("FullName") != null)
+                        {
+                            <a class="btn btn-custom" href="@Url.Content("~/User/Donate/Index")">Donate Now</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-custom" href="@Url.Content("~/User/Account/Login")">Donate Now</a>
+                        }
                         <a class="btn btn-custom btn-play" data-toggle="modal" data-src="https://www.youtube.com/embed/pFyFBJ9gfvk" data-target="#videoModal">Watch Video</a>
                     </div>
                 </div>

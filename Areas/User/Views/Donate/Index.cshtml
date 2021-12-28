@@ -14,8 +14,8 @@
                 <h2>Donate</h2>
             </div>
             <div class="col-12">
-                <a href="">Home</a>
-                <a href="">Donate</a>
+                <a href="@Url.Content("~/User/Home")">Home</a>
+                <a href="#">Donate</a>
             </div>
         </div>
     </div>
@@ -72,7 +72,7 @@
                             </div>
                             <br>
                             <div class="w3_agileits_main_grid_left_r">
-                                <input type="text" asp-for="GetDonate.Amount"  placeholder="Amount" required >
+                                <input type="number" asp-for="GetDonate.Amount"  placeholder="Amount" required >
                             </div>
                         </div>
                     </div>
