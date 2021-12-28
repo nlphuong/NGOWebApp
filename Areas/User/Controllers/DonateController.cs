@@ -69,5 +69,44 @@ namespace NGOWebApp.Areas.User.Controllers
             }
            return RedirectToAction("Index");
         }
+
+        //DonateToProgram
+        [HttpGet]
+        public ActionResult DonateToProgram(int programId)
+        {
+            if (HttpContext.Session.GetInt32("AccountId")==null) 
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var model = context.GetPrograms.Include(x => x.GetPartner).ThenInclude(x => x.GetDonateCategory).Where(x => x.Id == programId).FirstOrDefault();
+            var info = new Dictionary<string, int>();
+            info.Add("Category", model.GetPartner.GetDonateCategory.Id);
+            info.Add("PartnerId", model.GetPartner.Id);
+            info.Add("ProgramId", model.Id);
+            ViewBag.Info = info;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DonateToProgram(Donate donate)
+        {
+            try
+            {
+                context.GetDonates.Add(donate);
+                context.SaveChanges();
+                return RedirectToAction("Success");
+            }
+            catch (Exception)
+            {
+                var model = context.GetPrograms.Include(x => x.GetPartner).ThenInclude(x => x.GetDonateCategory).Where(x => x.Id == donate.ProgramId).FirstOrDefault();
+                var info = new Dictionary<string, int>();
+                info.Add("Category", model.GetPartner.GetDonateCategory.Id);
+                info.Add("PartnerId", model.GetPartner.Id);
+                info.Add("ProgramId", model.Id);
+                ViewBag.Info = info;
+                return View();
+            }
+           
+        }
+
     }
 }

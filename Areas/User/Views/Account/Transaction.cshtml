@@ -2,10 +2,7 @@
 @{
     TempData["Title"] = "Transaction";
 }
-
 <link href="~/css/User/userprofile.css" rel="stylesheet" />
-
-
 <!-- Page Header Start -->
 <div class="page-header">
     <div class="container">
@@ -22,12 +19,11 @@
                 <table id="table-datatables" class="table">
                     <thead>
                         <tr>
-                            
                             <th>
                                 Cause
                             </th>
                             <th>
-                               Partner
+                                Partner
                             </th>
                             <th>
                                 Amount
@@ -46,10 +42,10 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>                            
+                            <tr>
                                 <td>
-                                     @item.GetDonateCategory.Name
-                                   
+                                    @item.GetDonateCategory.Name
+
                                 </td>
                                 <td>
                                     @item.GetPartner.OrgName
@@ -64,11 +60,9 @@
                                     }
                                     else
                                     {
-                                <a href="/user/event/details/@item.ProgramId">@item.GetPrograms.ShortContent</a>
-                                            
-                                            }
-
-                                    </td>
+                                        <a href="/user/event/details/@item.ProgramId">@item.GetPrograms.ShortContent</a>
+                                    }
+                                </td>
                                 <td>
                                     @if (item.GetPrograms == null)
                                     {
@@ -86,7 +80,6 @@
                                     {
                                         <span class="badge badge-pill badge-success">End program</span>
                                     }
-
                                 </td>
                                 <td>
                                     @item.CreatedAt.ToString("dd MMM yyy")
@@ -102,9 +95,13 @@
 </div>
 
 @section Scripts{
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#table-datatables').DataTable()             
+            $('#table-datatables').DataTable({
+                "order": [[5, "desc"]]
+            });
         })
     </script>
 
