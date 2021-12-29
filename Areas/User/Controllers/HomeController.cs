@@ -20,7 +20,7 @@ namespace NGOWebApp.Areas.User.Controllers
         }
         public IActionResult Index()
         {
-            var model = from p in context.GetPrograms.Include(x => x.GetDonates).Include(x => x.GetPartner).Where(x => x.Status == 1)
+            var model = from p in context.GetPrograms.Include(x => x.GetDonates).Include(x => x.GetPartner).Where(x => x.Status == 1&&x.DeleteAt==null)
 
                         select new ProgramDonateVM
                         {

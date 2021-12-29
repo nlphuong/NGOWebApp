@@ -52,14 +52,22 @@ namespace NGOWebApp.Areas.User.Controllers
         {
             try
             {
+                //check campaign of partner : if exist =>donate to this campaign /else set null
+                var program= context.GetPrograms.FirstOrDefault(x => x.PartnerId == donateCategoriesVM.PartnerId && x.Status == 1);
                 Donate donate = new Donate();
                 donate.AccountId = donateCategoriesVM.GetDonate.AccountId;
                 donate.CategoryId = donateCategoriesVM.CategoryId;
                 donate.PartnerId = donateCategoriesVM.PartnerId;
                 donate.Amount = donateCategoriesVM.GetDonate.Amount;
-                donate.ProgramId = null;
+                if (program!=null)
+                {
+                    donate.ProgramId = program.Id;
+                }
+                else
+                {
+                    donate.ProgramId = null;
+                }              
                 donate.Status = 1;
-
                 context.GetDonates.Add(donate);
                 context.SaveChanges();
                 return RedirectToAction("Success");
@@ -93,7 +101,17 @@ namespace NGOWebApp.Areas.User.Controllers
             {
                 context.GetDonates.Add(donate);
                 context.SaveChanges();
+
+                //close the campaign when the donation is enough
+                var model = context.GetPrograms.Include(x => x.GetDonates).Where(x=>x.Id==donate.ProgramId).Where(x => x.GetDonates.Select(x => x.Amount).Sum() >= x.ExpectedAmount).FirstOrDefault();
+                if (model!=null)
+                {
+                    model.Status = 2;
+                    context.SaveChanges();
+                }
                 return RedirectToAction("Success");
+
+
             }
             catch (Exception)
             {

@@ -21,7 +21,7 @@ namespace NGOWebApp.Areas.User.Controllers
         public IActionResult Index()
         {
             var accountId = HttpContext.Session.GetInt32("Id");
-            var model = from p in context.GetPrograms.Include(x => x.GetDonates).Include(x => x.GetPartner).Include(x=>x.GetInteresteds).OrderBy(x=>x.Status)
+            var model = from p in context.GetPrograms.Include(x => x.GetDonates).Include(x => x.GetPartner).Include(x=>x.GetInteresteds).Where(x=>x.DeleteAt==null).OrderBy(x=>x.Status)
                        
                         select new ProgramDonateVM
                         {

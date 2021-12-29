@@ -179,7 +179,7 @@
             @foreach (var item in Model)
             {
                 <div class="causes-item">
-                    <div class="causes-img">
+                    <div class="causes-img" style="height:190px">
                         <img src="~/@item.Programs.Photo" alt="Image">
                     </div>
                     <div class="causes-progress">
@@ -215,7 +215,7 @@
                     </div>
                     <div class="causes-btn" style="height:50px">
                         <a class="btn btn-custom" asp-action="Details" asp-controller="Event" asp-route-Id="@item.Programs.Id">Learn More</a>
-                        <a class="btn btn-custom">Donate Now</a>
+                        <a class="btn btn-custom" asp-area="User" asp-controller="Donate" asp-action="DonateToProgram" asp-route-programId="@item.Programs.Id">Donate Now</a>
                     </div>
                 </div>
             }
