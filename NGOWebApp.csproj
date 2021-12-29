@@ -39,10 +39,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\DonateCategory\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\css\elFinder-Material-Theme\.github\FUNDING.yml" />
     <None Include="wwwroot\css\elFinder-Material-Theme\.git\config" />
     <None Include="wwwroot\css\elFinder-Material-Theme\.git\description" />

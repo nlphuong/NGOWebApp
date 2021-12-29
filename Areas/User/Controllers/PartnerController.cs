@@ -19,7 +19,7 @@ namespace NGOWebApp.Areas.User.Controllers
         }
         public IActionResult Index()
         {
-            var model = from e in context.GetPartners.Include(x => x.GetPrograms)
+            var model = from e in context.GetPartners.Include(x => x.GetPrograms).Where(x=>x.Status==1)
                         select new PartnerProgramVM { GetPartner=e,SumProgram=e.GetPrograms.Count()};
             return View(model);
         }

@@ -12,10 +12,10 @@ namespace NGOWebApp.Data.ConfigData.Seeders
         public DonateCategorySeeders(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<DonateCategory>().HasData(
-                new DonateCategory { Id=1,Name= "Care for elderly people" ,Photo= "images/care-elderly.jpg" },
-                new DonateCategory { Id=2,Name= "Children Welfare Activity", Photo= "images/ChildrenWelfare.jpg" },
-                new DonateCategory { Id=3,Name= "Disabled Person", Photo= "images/DisabledPerson.jpg" },
-                new DonateCategory { Id=4,Name= "People affected by natural disasters", Photo= "images/disaster.jpg" }
+                new DonateCategory { Id=1,Name= "Care for elderly people" ,Photo= "care-elderly.jpg" },
+                new DonateCategory { Id=2,Name= "Children Welfare Activity", Photo= "ChildrenWelfare.jpg" },
+                new DonateCategory { Id=3,Name= "Disabled Person", Photo= "DisabledPerson.jpg" },
+                new DonateCategory { Id=4,Name= "People affected by natural disasters", Photo= "disaster.jpg" }
                 );
         }
     }

@@ -19,8 +19,8 @@ namespace NGOWebApp.Areas.User.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.CauseList = context.GetDonateCategories.Include(x=>x.GetPartners).ToList();
-            var model = from p in context.GetPrograms.Include(x=>x.GetDonates).Include(x=>x.GetPartner) .Where(x=>x.Status==1)
+            ViewBag.CauseList = context.GetDonateCategories.Include(x=>x.GetPartners).Where(x=>x.Status==1).ToList();
+            var model = from p in context.GetPrograms.Include(x=>x.GetDonates).Include(x=>x.GetPartner) .Where(x=>x.Status==1&&x.DeleteAt==null)
                 
                         select new ProgramDonateVM {
                             Programs = p,
@@ -29,8 +29,6 @@ namespace NGOWebApp.Areas.User.Controllers
                         };
            
             var result = model.ToList();
-
-
             return View(result);
         }
     }

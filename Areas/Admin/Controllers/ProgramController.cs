@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using NGOWebApp.Data;
 using NGOWebApp.Models;
 using System;
@@ -9,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Web.WebPages.Html;
 
 namespace NGOWebApp.Areas.Admin.Controllers
@@ -29,7 +31,7 @@ namespace NGOWebApp.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            var partnerList = context.GetPartners.ToList();
+            var partnerList = context.GetPartners.Include(x => x.GetPrograms).Where(x => x.GetPrograms.Where(x => x.Status == 1 && x.DeleteAt == null).Count() == 0).ToList();
             ViewBag.partnerList = new SelectList(partnerList, "Id", "OrgName");
             return View();
         }
@@ -40,11 +42,11 @@ namespace NGOWebApp.Areas.Admin.Controllers
             
             if (ModelState.IsValid)
             {
-                var program = context.GetPrograms.SingleOrDefault(x => x.PartnerId == programs.PartnerId && x.Status == 1);
+                var program = context.GetPrograms.SingleOrDefault(x => x.PartnerId == programs.PartnerId && x.Status == 1&&x.DeleteAt==null);
                 if (program!=null)
                 {
-                    ViewBag.Msg = "This partner is calling for a campaign";
-                    var partnerList = context.GetPartners.ToList();
+                    ViewBag.Exist = "This partner is calling for a campaign";
+                    var partnerList = context.GetPartners.Include(x=>x.GetPrograms).Where(x=>x.GetPrograms.Where(x=>x.Status==1&&x.DeleteAt==null).Count()==0).ToList();
                     ViewBag.partnerList = new SelectList(partnerList, "Id", "OrgName");
                     return View();
                 }
@@ -57,7 +59,7 @@ namespace NGOWebApp.Areas.Admin.Controllers
                             string path = Path.Combine("wwwroot/images/AlbumProgram/", file.FileName);
                             var stream = new FileStream(path, FileMode.Create);
                             file.CopyToAsync(stream);
-                            programs.Photo = "images/AlbumProgram" + file.FileName;
+                            programs.Photo = "images/AlbumProgram/" + file.FileName;
                         }
                         else
                         {
@@ -68,8 +70,33 @@ namespace NGOWebApp.Areas.Admin.Controllers
                     {
                         throw;
                     }
-                    context.GetPrograms.Add(programs);
-                    context.SaveChanges();
+                    using (IDbContextTransaction transaction = context.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            context.GetPrograms.Add(programs);
+                            context.SaveChanges();
+                            //send donations with programId null value to this program                     
+                            var donates = context.GetDonates.Where(x => x.PartnerId == programs.PartnerId && x.Status == 1 && x.ProgramId == null);                          
+                            if (donates.Any())
+                            {
+                                foreach (var item in donates)
+                                {
+                                    item.ProgramId = programs.Id;
+                                }
+                                context.SaveChanges();
+                            }
+                            
+                            transaction.Commit();
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            return BadRequest();
+                        }
+                    }
+                   
+                    
                     return RedirectToAction("Index", "Program");
                 }
                
