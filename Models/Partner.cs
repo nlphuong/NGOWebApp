@@ -27,7 +27,7 @@ namespace NGOWebApp.Models
         [Required]
         public string Address { get; set; }
         [Display(Name ="Category Type")]
-        public int? CategoryId { get; set; }
+        public int CategoryId { get; set; }
         public string Logo { get; set; }
         public int Status { get; set; } //1.Active 2.InActive/delete  default:1
         public DateTime? CreatedAt { get; set; }
